@@ -11,7 +11,7 @@ export default function Home() {
       <Head>
         <title>rcps</title>
         <meta name="description" content="recipes" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
       <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-6 font-mono md:gap-12 md:p-12">
         <div className="flex flex-wrap items-center gap-4">
