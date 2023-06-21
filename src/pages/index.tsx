@@ -13,50 +13,32 @@ export default function Home() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 p-6 font-mono lg:gap-12 lg:p-12">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Link href="/" className="hover:text-red-500">
-              rcps.
-            </Link>
-            <Link
-              href="#"
-              className="font-semibold underline hover:text-red-500"
-            >
-              All
-            </Link>
-            <Link
-              href="#"
-              className="font-semibold underline hover:text-red-500"
-            >
-              Breakfast
-            </Link>
-            <Link
-              href="#"
-              className="font-semibold underline hover:text-red-500"
-            >
-              Lunch
-            </Link>
-            <Link
-              href="#"
-              className="font-semibold underline hover:text-red-500"
-            >
-              Dinner
-            </Link>
-            <Link
-              href="#"
-              className="font-semibold underline hover:text-red-500"
-            >
-              Snacks
-            </Link>
-            <Link
-              href="#"
-              className="font-semibold underline hover:text-red-500"
-            >
-              Vegan
-            </Link>
-          </div>
-
-          <Link href="#" className="font-semibold underline hover:text-red-500">
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
+            href="/"
+            className="bg-black px-2 py-1 text-white hover:bg-red-600"
+          >
+            rcps
+          </Link>
+          <Link href="#" className="font-semibold underline hover:text-red-600">
+            Breakfast
+          </Link>
+          <Link href="#" className="font-semibold underline hover:text-red-600">
+            Lunch
+          </Link>
+          <Link href="#" className="font-semibold underline hover:text-red-600">
+            Dinner
+          </Link>
+          <Link href="#" className="font-semibold underline hover:text-red-600">
+            Snacks
+          </Link>
+          <Link href="#" className="font-semibold underline hover:text-red-600">
+            Vegan
+          </Link>
+          <Link
+            href="#"
+            className="font-semibold underline hover:text-red-600 sm:flex-1 sm:text-right"
+          >
             Search
           </Link>
         </div>
