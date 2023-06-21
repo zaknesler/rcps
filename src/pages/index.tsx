@@ -52,16 +52,16 @@ export default function Home() {
           <Link
             href="#"
             className="font-semibold underline hover:text-red-600"
-            title="drinks"
+            title="vegan"
           >
-            drnks
+            vgn
           </Link>
           <Link
             href="#"
             className="font-semibold underline hover:text-red-600"
-            title="vegan"
+            title="drinks"
           >
-            vgn
+            drnks
           </Link>
           <Link
             href="#"
@@ -73,7 +73,7 @@ export default function Home() {
         </div>
 
         {data && (
-          <div className="-mx-3 flex flex-col gap-6 border border-black p-3 md:-mx-8 md:p-8">
+          <div className="-mx-3 -mb-3 flex flex-col gap-6 border border-black p-3 md:m-0 md:-mx-8 md:p-8">
             <h1 className="max-w-lg text-2xl font-bold leading-snug md:text-3xl">
               {data.title}
             </h1>
@@ -90,6 +90,7 @@ export default function Home() {
                 {data.ingredients.map((ingredient, index) => (
                   <li key={index}>
                     <strong>{ingredient.amount}</strong> {ingredient.name}
+                    {ingredient.preparation && `, ${ingredient.preparation}`}
                   </li>
                 ))}
               </ul>

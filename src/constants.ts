@@ -4,10 +4,18 @@ export const recipes = [
     title: 'Strawberry-Basil Kombucha',
     ingredients: [
       { amount: '1 2/3 gallons', name: 'homemade kombucha*' },
-      { amount: '2 heaping cups', name: 'ripe strawberries, chopped' },
+      {
+        amount: '2 heaping cups',
+        name: 'ripe strawberries',
+        preparation: 'chopped',
+      },
       { amount: '1/2 cup', name: 'sugar' },
       { amount: '1/2 cup', name: 'water' },
-      { amount: '2 ounces (1 cup)', name: 'fresh basil, chopped' },
+      {
+        amount: '2 ounces (1 cup)',
+        name: 'fresh basil',
+        preparation: 'chopped',
+      },
     ],
     steps: [
       "Brew a batch of homemade kombucha. When it's ready to be bottled for secondary fermentation (after 7 to 10 days of brewing), follow instructions below.",
