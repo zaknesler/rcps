@@ -3,9 +3,7 @@ import Link from 'next/link'
 import { api } from '~/utils/api'
 
 export default function Home() {
-  const { data } = api.example.hello.useQuery({
-    id: 1,
-  })
+  const { data } = api.recipes.list.useQuery({ id: 1 })
 
   return (
     <>
