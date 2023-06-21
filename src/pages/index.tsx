@@ -37,7 +37,7 @@ export default function Home() {
           </Link>
           <Link
             href="#"
-            className="font-semibold underline hover:text-red-600 sm:flex-1 sm:text-right"
+            className="font-semibold underline hover:text-red-600 sm:ml-auto sm:text-right"
           >
             Search
           </Link>
