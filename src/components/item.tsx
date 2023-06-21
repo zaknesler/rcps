@@ -10,11 +10,7 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({ recipe }) => (
       {recipe.title}
     </h1>
 
-    <p>
-      I almost always have a freshly-bottled batch of this stuff in the
-      refrigerator. I tend to start brewing a new batch before I run out of
-      inventory so that I have a continual stock.
-    </p>
+    <p>{recipe.summary}</p>
 
     <section className="flex flex-col gap-3">
       <h2 className="text-lg font-semibold md:text-xl">Ingredients</h2>

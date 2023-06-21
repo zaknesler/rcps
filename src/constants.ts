@@ -4,6 +4,7 @@ export type Recipe = {
   id: number
   tags?: Tag[]
   title: string
+  summary: string
   ingredients: {
     amount: string
     name: string
@@ -12,7 +13,7 @@ export type Recipe = {
   }[]
   steps: string[]
   notes?: {
-    symbol: string
+    symbol?: string
     text: string
   }[]
 }
@@ -22,6 +23,8 @@ export const recipes: Recipe[] = [
     id: 1,
     tags: ['drink', 'vegan'],
     title: 'Raw Kombucha',
+    summary:
+      'The start for any proper kombucha. You can drink it as is, or use it as a base for other flavors.',
     ingredients: [
       { amount: '12-oz bottle', name: 'raw kombucha', note_symbol: '*' },
       {
@@ -31,12 +34,15 @@ export const recipes: Recipe[] = [
         note_symbol: '**',
       },
       { amount: '4-5 bags', name: 'black tea' },
-      { amount: '1 cup', name: 'sugar' },
+      { amount: '1/2 cup', name: 'sugar' },
     ],
     steps: [
       'Bring water to boil and steep tea for 15-20 minutes. You want a strong tea base, so the darker the better.',
       'Pour into a large, well-cleaned 1-gallon glass jar and add sugar. Stir until dissolved.',
       'Allow tea to cool to room temperature (otherwise the heat will kill the SCOBY). You can speed up this process by placing the pot in an ice bath.',
+      'Add the raw kombucha. Cover the jar with a clean cloth and secure with a rubber band (the fermenation needs air, but not bugs).',
+      "Place the jar in a warm, dark place (warmer means a faster ferment). Allow to ferment for 1-2 weeks. The longer you let it ferment, the more vinegary it will taste. Taste it often after a week until it's to your liking.",
+      "Once it's ready, remove a few cups of the kombucha to use as a starter for your next batch.",
     ],
     notes: [
       {
@@ -45,7 +51,10 @@ export const recipes: Recipe[] = [
       },
       {
         symbol: '**',
-        text: 'You want a total of 1 gallon of water. I recommend steeping in about 1/2 gallon of water, and then filling up to 1 gallon after dissolving the sugar, cooling, and adding the SCOBY.',
+        text: 'You want a total of 1 gallon of water, including the starter kombucha. I recommend steeping in about 1/2 gallon of water. Then, once you have dissolved the sugar, cooled it, and added the raw kombucha, you can top it off until it reaches 1 gallon.',
+      },
+      {
+        text: "The slimy thing floating around is called the pellicle (often mistaken as the SCOBY). The SCOBY is the liquid itself. You can discard the pellicle or keep it for the next batch. It's not necessary, but it may help speed up subsequent ferments.",
       },
     ],
   },
@@ -53,6 +62,8 @@ export const recipes: Recipe[] = [
     id: 2,
     tags: ['drink', 'vegan'],
     title: 'Strawberry-Basil Kombucha',
+    summary:
+      'I almost always have a freshly-bottled batch of this stuff in the refrigerator. I tend to start brewing a new batch before I run out of inventory so that I have a continual stock.',
     ingredients: [
       { amount: '1 2/3 gallons', name: 'homemade kombucha', note_symbol: '*' },
       { amount: '2 heaping cups', name: 'ripe strawberries', prep: 'chopped' },
