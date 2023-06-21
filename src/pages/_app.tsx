@@ -23,7 +23,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
       <main
-        className={`${monoFont.variable} mx-auto flex w-full max-w-4xl flex-col gap-6 p-6 font-mono md:gap-12 md:p-12`}
+        className={`${monoFont.variable} mx-auto flex w-full max-w-4xl flex-col gap-6 p-6 font-mono antialiased md:gap-12 md:p-12`}
       >
         <Nav />
         <Component {...pageProps} />
