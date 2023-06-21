@@ -73,7 +73,7 @@ export default function Home() {
         </div>
 
         {data && (
-          <div className="-mx-4 flex flex-col gap-6 border border-black p-4 md:-mx-8 md:p-8">
+          <div className="-mx-3 flex flex-col gap-6 border border-black p-3 md:-mx-8 md:p-8">
             <h1 className="max-w-lg text-2xl font-bold leading-snug md:text-3xl">
               {data.title}
             </h1>
