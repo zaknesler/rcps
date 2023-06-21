@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+.print-exact {
+  print-color-adjust: exact;
+}
+
+@tailwind utilities;

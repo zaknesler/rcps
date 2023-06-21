@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex flex-wrap items-center gap-4">
           <Link
             href="/"
-            className="bg-black px-2 py-1 text-white hover:bg-red-600"
+            className="print-exact bg-black px-2 py-1 text-white hover:bg-red-600"
           >
             rcps
           </Link>
