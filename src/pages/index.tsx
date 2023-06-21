@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Head from 'next/head'
 import Link from 'next/link'
 import { api } from '~/utils/api'
@@ -8,11 +9,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>rcps.</title>
+        <title>rcps</title>
         <meta name="description" content="recipes" />
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 p-6 font-mono lg:gap-12 lg:p-12">
+      <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-6 font-mono md:gap-12 md:p-12">
         <div className="flex flex-wrap items-center gap-4">
           <Link
             href="/"
@@ -20,32 +21,60 @@ export default function Home() {
           >
             rcps
           </Link>
-          <Link href="#" className="font-semibold underline hover:text-red-600">
-            Breakfast
-          </Link>
-          <Link href="#" className="font-semibold underline hover:text-red-600">
-            Lunch
-          </Link>
-          <Link href="#" className="font-semibold underline hover:text-red-600">
-            Dinner
-          </Link>
-          <Link href="#" className="font-semibold underline hover:text-red-600">
-            Snacks
-          </Link>
-          <Link href="#" className="font-semibold underline hover:text-red-600">
-            Vegan
+          <Link
+            href="#"
+            className="font-semibold underline hover:text-red-600"
+            title="breakfast"
+          >
+            brkfst
           </Link>
           <Link
             href="#"
-            className="font-semibold underline hover:text-red-600 sm:ml-auto sm:text-right"
+            className="font-semibold underline hover:text-red-600"
+            title="lunch"
           >
-            Search
+            lnch
+          </Link>
+          <Link
+            href="#"
+            className="font-semibold underline hover:text-red-600"
+            title="dinner"
+          >
+            dnnr
+          </Link>
+          <Link
+            href="#"
+            className="font-semibold underline hover:text-red-600"
+            title="snacks"
+          >
+            snks
+          </Link>
+          <Link
+            href="#"
+            className="font-semibold underline hover:text-red-600"
+            title="drinks"
+          >
+            drnks
+          </Link>
+          <Link
+            href="#"
+            className="font-semibold underline hover:text-red-600"
+            title="vegan"
+          >
+            vgn
+          </Link>
+          <Link
+            href="#"
+            className="inline-flex items-center gap-2 font-semibold underline hover:text-red-600 sm:ml-auto sm:text-right"
+          >
+            <MagnifyingGlassIcon className="h-4 w-4" />
+            srch
           </Link>
         </div>
 
         {data && (
-          <div className="flex flex-col gap-6 border border-black p-6 lg:p-8">
-            <h1 className="max-w-lg text-3xl font-bold leading-snug">
+          <div className="-mx-4 flex flex-col gap-6 border border-black p-4 md:-mx-8 md:p-8">
+            <h1 className="max-w-lg text-2xl font-bold leading-snug md:text-3xl">
               {data.title}
             </h1>
 
@@ -56,7 +85,7 @@ export default function Home() {
             </p>
 
             <section className="flex flex-col gap-3">
-              <h2 className="text-xl font-semibold">Ingredients</h2>
+              <h2 className="text-lg font-semibold md:text-xl">Ingredients</h2>
               <ul className="ml-8 flex list-disc flex-col gap-1.5">
                 {data.ingredients.map((ingredient, index) => (
                   <li key={index}>
@@ -67,7 +96,7 @@ export default function Home() {
             </section>
 
             <section className="flex flex-col gap-3">
-              <h2 className="text-xl font-semibold">Instructions</h2>
+              <h2 className="text-lg font-semibold md:text-xl">Instructions</h2>
               <ol className="ml-8 flex list-decimal flex-col gap-3">
                 {data.steps.map((instruction, index) => (
                   <li key={index}>{instruction}</li>
@@ -76,7 +105,7 @@ export default function Home() {
             </section>
 
             <section className="flex flex-col gap-3">
-              <h2 className="text-xl font-semibold">Notes</h2>
+              <h2 className="text-lg font-semibold md:text-xl">Notes</h2>
               {data.notes.map((note, index) => (
                 <p key={index}>{note}</p>
               ))}
