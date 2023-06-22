@@ -16,7 +16,7 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({
     aria-label={recipe.title}
     aria-description={recipe.summary}
     className={cx(
-      'flex flex-col gap-6 border border-black p-4 md:p-8',
+      'flex flex-col gap-6 border border-black p-4 text-sm md:p-8 md:text-base',
       className,
     )}
   >
