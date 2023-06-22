@@ -19,7 +19,12 @@ export const getServerSideProps = async ({
 const Index: InferSSR<typeof getServerSideProps> = ({ query, recipes }) => {
   return (
     <>
-      {!!recipes.length && <p className="text-center">Recipes for "{query}"</p>}
+      {!!recipes.length && (
+        <p className="md:text-center">
+          {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'} for "
+          {query}"
+        </p>
+      )}
       <RecipeList
         recipes={recipes}
         notFoundText={`No recipes found for "${query}"`}

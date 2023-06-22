@@ -4,6 +4,7 @@ export type Tag = (typeof validTags)[number]
 
 export type Recipe = {
   id: number
+  slug: string
   tags?: Tag[]
   title: string
   summary: string

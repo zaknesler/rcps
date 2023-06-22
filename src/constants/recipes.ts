@@ -12,6 +12,7 @@ export const validTags = [
 export const allRecipes: Recipe[] = [
   {
     id: 1,
+    slug: 'raw-kombucha',
     tags: ['drinks', 'vegan'],
     title: 'Raw Kombucha',
     summary:
@@ -51,6 +52,7 @@ export const allRecipes: Recipe[] = [
   },
   {
     id: 2,
+    slug: 'strawberry-basil-kombucha',
     tags: ['drinks', 'vegan'],
     title: 'Strawberry-Basil Kombucha',
     summary:
