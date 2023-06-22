@@ -19,7 +19,7 @@ export const Nav = () => {
     <nav className="flex flex-wrap items-stretch gap-4">
       <Link
         href="/"
-        className="print-exact group bg-black p-2 leading-none text-white"
+        className="print-exact group bg-black px-3 py-2 leading-snug text-white"
       >
         <span className="group-hover:hidden">r.c.p.s</span>
         <span className="hidden group-hover:inline">recipes</span>

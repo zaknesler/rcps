@@ -52,7 +52,7 @@ export const Search: React.FC<SearchProps> = ({ className }) => {
   }
 
   return (
-    <div className={cx('relative flex items-center', className)}>
+    <div className={cx('flex flex-1 items-center justify-end', className)}>
       {open ? (
         <input
           ref={input}
@@ -61,13 +61,13 @@ export const Search: React.FC<SearchProps> = ({ className }) => {
           onChange={e => setQuery(e.target.value)}
           onKeyDown={handleSubmit}
           className={cx(
-            'absolute right-0 h-full w-64 rounded-none border border-black p-2 text-sm outline-none transition-[box-shadow,width] focus:ring-4 focus:ring-gray-300',
+            'h-full w-full max-w-xs flex-1 self-stretch rounded-none border border-black p-2 text-sm leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300',
           )}
           placeholder="Search for recipes..."
         />
       ) : (
         <button
-          className="absolute right-0 inline-flex appearance-none items-center gap-2 font-semibold underline hover:text-red-600"
+          className="inline-flex appearance-none items-center gap-2 font-semibold underline hover:text-red-600"
           onClick={() => setOpen(!open)}
         >
           <MagnifyingGlassIcon className="h-4 w-4" />
