@@ -3,7 +3,11 @@ import { cx } from 'class-variance-authority'
 import { useRouter } from 'next/router'
 import { type KeyboardEvent, useEffect, useRef, useState } from 'react'
 
-export const Search = () => {
+type SearchProps = {
+  className?: string
+}
+
+export const Search: React.FC<SearchProps> = ({ className }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const input = useRef<HTMLInputElement>(null)
@@ -20,7 +24,7 @@ export const Search = () => {
   }
 
   return (
-    <div className="relative flex items-center">
+    <div className={cx('relative flex items-center', className)}>
       {open ? (
         <input
           ref={input}

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Search } from './search'
 
 const links = [
@@ -10,30 +11,42 @@ const links = [
   { href: '/drinks', label: 'drinks', text: 'drnks' },
 ]
 
-export const Nav = () => (
-  <nav className="flex flex-wrap items-stretch gap-4">
-    <Link
-      href="/"
-      className="print-exact bg-black p-2 leading-none text-white hover:bg-red-600"
-    >
-      rcps
-    </Link>
+export const Nav = () => {
+  const router = useRouter()
+  const path = router.asPath.replace(/\/$/, '')
 
-    <div className="hidden flex-wrap items-center gap-4 md:flex">
-      {links.map(link => (
-        <Link
-          key={link.label}
-          href={link.href}
-          className="font-semibold underline hover:text-red-600"
-          title={link.label}
+  return (
+    <nav className="flex flex-wrap items-stretch gap-4">
+      <Link
+        href="/"
+        className="print-exact group bg-black p-2 leading-none text-white"
+      >
+        <span className="group-hover:hidden">r.c.p.s</span>
+        <span className="hidden group-hover:inline">recipes</span>
+      </Link>
+
+      <div className="hidden flex-wrap items-center gap-4 md:flex">
+        {links.map(link => (
+          <Link
+            key={link.label}
+            href={link.href}
+            className="font-semibold underline hover:text-red-600"
+            title={link.label}
+          >
+            {link.text}
+          </Link>
+        ))}
+      </div>
+
+      <div className="flex flex-1 flex-wrap items-stretch justify-end gap-4">
+        <Search className="print:hidden" />
+        <a
+          className="hidden self-center text-sm print:block"
+          href={`https://rcps.io${path}`}
         >
-          {link.text}
-        </Link>
-      ))}
-    </div>
-
-    <div className="flex flex-1 flex-wrap items-stretch justify-end gap-4">
-      <Search />
-    </div>
-  </nav>
-)
+          rcps.io{path}
+        </a>
+      </div>
+    </nav>
+  )
+}
