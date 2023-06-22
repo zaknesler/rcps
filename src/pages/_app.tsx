@@ -17,7 +17,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>rcps</title>
+        <title>r.c.p.s</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="recipes" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
