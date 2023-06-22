@@ -1,9 +1,18 @@
 import type { Recipe } from '~/types/recipe'
 
-export const recipes: Recipe[] = [
+export const validTags = [
+  'breakfast',
+  'lunch',
+  'dinner',
+  'snacks',
+  'vegan',
+  'drinks',
+] as const
+
+export const allRecipes: Recipe[] = [
   {
     id: 1,
-    tags: ['drink', 'vegan'],
+    tags: ['drinks', 'vegan'],
     title: 'Raw Kombucha',
     summary:
       'The start for any proper kombucha. You can drink it as is, or use it as a base for other flavors.',
@@ -42,7 +51,7 @@ export const recipes: Recipe[] = [
   },
   {
     id: 2,
-    tags: ['drink', 'vegan'],
+    tags: ['drinks', 'vegan'],
     title: 'Strawberry-Basil Kombucha',
     summary:
       'I almost always have a freshly-bottled batch of this stuff in the refrigerator. I tend to start brewing a new batch before I run out of inventory so that I have a continual stock.',

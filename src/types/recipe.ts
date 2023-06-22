@@ -1,4 +1,6 @@
-export type Tag = 'breakfast' | 'lunch' | 'dinner' | 'snack' | 'vegan' | 'drink'
+import { type validTags } from '~/constants/recipes'
+
+export type Tag = (typeof validTags)[number]
 
 export type Recipe = {
   id: number

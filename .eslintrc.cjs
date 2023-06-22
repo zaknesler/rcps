@@ -36,6 +36,7 @@ const config = {
     'no-underscore-dangle': 0,
     'no-unused-vars': 'off',
     'react/no-unknown-property': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/consistent-type-imports': [
       'warn',

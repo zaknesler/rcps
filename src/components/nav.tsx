@@ -1,13 +1,13 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
+import { Search } from './search'
 
 const links = [
-  { href: '/', label: 'breakfast', text: 'brkfst' },
-  { href: '/', label: 'lunch', text: 'lnch' },
-  { href: '/', label: 'dinner', text: 'dnnr' },
-  { href: '/', label: 'snacks', text: 'snks' },
-  { href: '/', label: 'vegan', text: 'vgn' },
-  { href: '/', label: 'drinks', text: 'drnks' },
+  { href: '/breakfast', label: 'breakfast', text: 'brkfst' },
+  { href: '/lunch', label: 'lunch', text: 'lnch' },
+  { href: '/dinner', label: 'dinner', text: 'dnnr' },
+  { href: '/snacks', label: 'snacks', text: 'snks' },
+  { href: '/vegan', label: 'vegan', text: 'vgn' },
+  { href: '/drinks', label: 'drinks', text: 'drnks' },
 ]
 
 export const Nav = () => (
@@ -33,10 +33,7 @@ export const Nav = () => (
     </div>
 
     <div className="flex flex-1 flex-wrap items-center justify-end gap-4">
-      <button className="inline-flex appearance-none items-center gap-2 font-semibold underline hover:text-red-600">
-        <MagnifyingGlassIcon className="h-4 w-4" />
-        srch
-      </button>
+      <Search />
     </div>
   </nav>
 )

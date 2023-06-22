@@ -1,18 +1,12 @@
-import { RecipeItem } from '~/components/item'
-import { recipes } from '~/constants/recipes'
+import { RecipeList } from '~/components/list'
+import { allRecipes } from '~/constants/recipes'
 
 export const getServerSideProps = () => {
-  return { props: { recipes } }
+  return { props: { recipes: allRecipes } }
 }
 
 const Index: InferSSR<typeof getServerSideProps> = ({ recipes }) => {
-  return (
-    <div className="flex flex-col gap-12">
-      {recipes.map(recipe => (
-        <RecipeItem recipe={recipe} className="-mx-3 -mb-3 md:m-0 md:-mx-8" />
-      ))}
-    </div>
-  )
+  return <RecipeList recipes={recipes} />
 }
 
 export default Index
