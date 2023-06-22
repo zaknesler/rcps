@@ -10,15 +10,9 @@ export const RecipeList: React.FC<RecipeListProps> = ({
   recipes,
   notFoundText = 'No recipes found.',
 }) => (
-  <div className="flex flex-col gap-12">
+  <div className="flex flex-col gap-4 md:gap-8">
     {recipes.length ? (
-      recipes.map(recipe => (
-        <RecipeItem
-          key={recipe.id}
-          recipe={recipe}
-          className="-mx-3 -mb-3 md:m-0 md:-mx-8"
-        />
-      ))
+      recipes.map(recipe => <RecipeItem key={recipe.id} recipe={recipe} />)
     ) : (
       <p className="text-center">{notFoundText}</p>
     )}
