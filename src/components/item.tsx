@@ -12,7 +12,7 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({
 }) => (
   <div
     className={cx(
-      'flex flex-col gap-6 border border-black p-3 md:p-8',
+      'flex flex-col gap-6 border border-black p-4 md:p-8',
       className,
     )}
   >
@@ -22,7 +22,7 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({
 
     <p>{recipe.summary}</p>
 
-    <section className="flex flex-col gap-3">
+    <section className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold md:text-xl">Ingredients</h2>
       <ul className="ml-8 flex list-disc flex-col gap-1.5">
         {recipe.ingredients.map((ingredient, index) => (
@@ -39,16 +39,16 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({
       </ul>
     </section>
 
-    <section className="flex flex-col gap-3">
+    <section className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold md:text-xl">Instructions</h2>
-      <ol className="ml-8 flex list-decimal flex-col gap-3">
+      <ol className="ml-8 flex list-decimal flex-col gap-4">
         {recipe.steps.map((instruction, index) => (
           <li key={index}>{instruction}</li>
         ))}
       </ol>
     </section>
 
-    <section className="flex flex-col gap-3">
+    <section className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold md:text-xl">Notes</h2>
       {recipe.notes?.map((note, index) => (
         <p key={index} id={`note-${recipe.id}-${note.symbol}`}>
