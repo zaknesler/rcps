@@ -19,20 +19,24 @@ export const Nav = () => (
       rcps
     </Link>
 
-    {links.map(link => (
-      <Link
-        key={link.label}
-        href={link.href}
-        className="font-semibold underline hover:text-red-600"
-        title={link.label}
-      >
-        {link.text}
-      </Link>
-    ))}
+    <div className="hidden flex-wrap items-center gap-4 md:flex">
+      {links.map(link => (
+        <Link
+          key={link.label}
+          href={link.href}
+          className="font-semibold underline hover:text-red-600"
+          title={link.label}
+        >
+          {link.text}
+        </Link>
+      ))}
+    </div>
 
-    <button className="inline-flex appearance-none items-center gap-2 font-semibold underline hover:text-red-600 sm:ml-auto sm:text-right">
-      <MagnifyingGlassIcon className="h-4 w-4" />
-      srch
-    </button>
+    <div className="flex flex-1 flex-wrap items-center justify-end gap-4">
+      <button className="inline-flex appearance-none items-center gap-2 font-semibold underline hover:text-red-600">
+        <MagnifyingGlassIcon className="h-4 w-4" />
+        srch
+      </button>
+    </div>
   </nav>
 )

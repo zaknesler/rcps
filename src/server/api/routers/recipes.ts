@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { recipes } from '~/constants'
+import { recipes } from '~/constants/recipes'
 import { createTRPCRouter, publicProcedure } from '~/server/api/trpc'
 
 export const recipeRouter = createTRPCRouter({

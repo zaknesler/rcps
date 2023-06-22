@@ -17,7 +17,6 @@ const config = {
   ],
   plugins: ['react', 'prettier', '@typescript-eslint', 'react-refresh'],
   rules: {
-    'react-refresh/only-export-components': 'warn',
     'import/default': 'error',
     'import/named': 'error',
     'import/newline-after-import': ['error', { count: 1 }],

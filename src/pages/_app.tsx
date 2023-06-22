@@ -13,7 +13,6 @@ const monoFont = IBM_Plex_Mono({
   variable: '--font-mono',
 })
 
-// eslint-disable-next-line react-refresh/only-export-components
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
@@ -32,5 +31,4 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   )
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default api.withTRPC(MyApp)

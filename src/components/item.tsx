@@ -1,11 +1,21 @@
-import type { Recipe } from '~/constants'
+import { cx } from 'class-variance-authority'
+import type { Recipe } from '~/types/recipe'
 
 type RecipeItemProps = {
   recipe: Recipe
+  className?: string
 }
 
-export const RecipeItem: React.FC<RecipeItemProps> = ({ recipe }) => (
-  <div className="-mx-3 -mb-3 flex flex-col gap-6 border border-black p-3 md:m-0 md:-mx-8 md:p-8">
+export const RecipeItem: React.FC<RecipeItemProps> = ({
+  recipe,
+  className,
+}) => (
+  <div
+    className={cx(
+      'flex flex-col gap-6 border border-black p-3 md:p-8',
+      className,
+    )}
+  >
     <h1 className="max-w-lg text-2xl font-bold leading-snug md:text-3xl">
       {recipe.title}
     </h1>
