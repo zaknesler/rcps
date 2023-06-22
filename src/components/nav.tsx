@@ -11,10 +11,10 @@ const links = [
 ]
 
 export const Nav = () => (
-  <nav className="flex flex-wrap items-center gap-4">
+  <nav className="flex flex-wrap items-stretch gap-4">
     <Link
       href="/"
-      className="print-exact bg-black px-2 py-1 text-white hover:bg-red-600"
+      className="print-exact bg-black p-2 leading-none text-white hover:bg-red-600"
     >
       rcps
     </Link>
@@ -32,7 +32,7 @@ export const Nav = () => (
       ))}
     </div>
 
-    <div className="flex flex-1 flex-wrap items-center justify-end gap-4">
+    <div className="flex flex-1 flex-wrap items-stretch justify-end gap-4">
       <Search />
     </div>
   </nav>

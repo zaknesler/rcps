@@ -27,7 +27,7 @@ export const Search = () => {
           type="text"
           onKeyDown={handleSubmit}
           className={cx(
-            'absolute right-0 w-64 border border-black px-3 py-2 text-sm outline-none transition-[box-shadow,width] focus:ring-4 focus:ring-gray-300',
+            'absolute right-0 h-full w-64 border border-black p-2 text-sm outline-none transition-[box-shadow,width] focus:ring-4 focus:ring-gray-300',
           )}
         />
       ) : (
