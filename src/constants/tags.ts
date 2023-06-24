@@ -18,6 +18,8 @@ export const validTags = [
       { name: 'Hot', value: 'hot' },
       { name: 'Cold', value: 'cold' },
       { name: 'Light', value: 'light' },
+      { name: 'Spicy', value: 'spicy' },
+      { name: 'Sandwiches', value: 'sandwiches' },
     ],
   },
   {
@@ -27,6 +29,9 @@ export const validTags = [
       { name: 'Hot', value: 'hot' },
       { name: 'Cold', value: 'cold' },
       { name: 'Light', value: 'light' },
+      { name: 'Spicy', value: 'spicy' },
+      { name: 'Sandwiches', value: 'sandwiches' },
+      { name: 'Pasta', value: 'pasta' },
     ],
   },
   {

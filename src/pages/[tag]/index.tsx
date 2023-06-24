@@ -1,7 +1,7 @@
 import type { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import { RecipeList } from '~/components/list'
-import { CategoryList } from '~/components/recipes/catetory-list'
+import { CategoryList } from '~/components/recipes/category-list'
 import { validTags } from '~/constants/tags'
 
 export const getServerSideProps = async ({
