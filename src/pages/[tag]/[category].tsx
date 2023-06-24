@@ -1,5 +1,7 @@
 import type { GetServerSidePropsContext } from 'next'
-import { validTags } from '~/constants/recipes'
+import { RecipeList } from '~/components/list'
+import { CategoryList } from '~/components/recipes/catetory-list'
+import { validTags } from '~/constants/tags'
 
 export const getServerSideProps = async ({
   params,
@@ -7,21 +9,38 @@ export const getServerSideProps = async ({
   const { prisma } = await import('../../server/db/client')
 
   const tag = validTags.find(item => item.value === (params?.tag as string))
-  if (!tag) return { notFound: true }
+  const category = tag?.categories?.find(
+    item => item.value === (params?.category as string),
+  )
+  if (!tag || !category) return { notFound: true }
 
   const recipes = await prisma.recipe.findMany({
     where: {
       tags: {
         some: {
           name: tag.value,
-          categories: { has: params?.category as string },
+          categories: { has: category.value },
         },
       },
     },
     select: { id: true, title: true, slug: true, summary: true },
   })
 
-  return { props: { tag, recipes } }
+  return { props: { tag, category, recipes } }
 }
 
-export { default } from './'
+const Index: InferSSR<typeof getServerSideProps> = ({
+  tag,
+  category,
+  recipes,
+}) => {
+  return (
+    <div className="flex flex-col gap-8">
+      <CategoryList tag={tag} selectedCategory={category.value} />
+
+      <RecipeList recipes={recipes} />
+    </div>
+  )
+}
+
+export default Index

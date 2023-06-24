@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { allRecipes } from '~/constants/recipes'
+import { allRecipes } from '~/constants/tags'
 import { router, procedures } from '~/server/api/trpc'
 
 export const recipeRouter = router({

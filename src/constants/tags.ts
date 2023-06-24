@@ -1,3 +1,4 @@
+export type Tag = (typeof validTags)[number]
 export const validTags = [
   {
     name: 'Breakfast',
