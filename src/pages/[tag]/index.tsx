@@ -21,7 +21,7 @@ export const getServerSideProps = async ({
 const Index: InferSSR<typeof getServerSideProps> = ({ tag, recipes }) => {
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid grid-cols-4 gap-4 font-semibold">
+      <div className="grid grid-cols-2 gap-4 font-semibold md:grid-cols-3 lg:grid-cols-4">
         {tag.categories?.map(category => (
           <a
             href={`/${tag.value}/${category.value}`}
