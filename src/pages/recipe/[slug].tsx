@@ -1,4 +1,5 @@
 import type { GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { RecipeCard } from '~/components/recipes/card'
 
 export const getServerSideProps = async ({
@@ -15,7 +16,21 @@ export const getServerSideProps = async ({
 const Index: InferSSR<typeof getServerSideProps> = ({ recipe }) => {
   if (!recipe) return null
 
-  return <RecipeCard recipe={recipe} />
+  return (
+    <>
+      <Head>
+        <title>{`${recipe.title} - r.c.p.s`}</title>
+        <meta name="description" content={recipe.summary} />
+        <meta
+          property="og:title"
+          content={`${recipe.title} Recipe - r.c.p.s`}
+        />
+        <meta property="og:description" content={recipe.summary} />
+        <meta property="og:type" content="article" />
+      </Head>
+      <RecipeCard recipe={recipe} />
+    </>
+  )
 }
 
 export default Index

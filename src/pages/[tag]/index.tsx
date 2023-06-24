@@ -1,4 +1,5 @@
 import type { GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { RecipeList } from '~/components/list'
 import { CategoryList } from '~/components/recipes/catetory-list'
 import { validTags } from '~/constants/tags'
@@ -21,11 +22,16 @@ export const getServerSideProps = async ({
 
 const Index: InferSSR<typeof getServerSideProps> = ({ tag, recipes }) => {
   return (
-    <div className="flex flex-col gap-8">
-      <CategoryList tag={tag} />
+    <>
+      <Head>
+        <title>{`${tag.value} recipes - r.c.p.s`}</title>
+      </Head>
 
-      <RecipeList recipes={recipes} />
-    </div>
+      <div className="flex flex-col gap-8">
+        <CategoryList tag={tag} />
+        <RecipeList recipes={recipes} />
+      </div>
+    </>
   )
 }
 

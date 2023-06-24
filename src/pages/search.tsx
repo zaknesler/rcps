@@ -1,5 +1,6 @@
 import type { Recipe } from '@prisma/client'
 import type { GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { RecipeList } from '~/components/list'
 
 export const getServerSideProps = async ({
@@ -27,12 +28,17 @@ export const getServerSideProps = async ({
 const Index: InferSSR<typeof getServerSideProps> = ({ query, recipes }) => {
   return (
     <>
+      <Head>
+        <title>{`"${query}" recipes - r.c.p.s`}</title>
+      </Head>
+
       {!!recipes.length && (
         <p className="md:text-center">
           {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'} for "
           {query}"
         </p>
       )}
+
       <RecipeList
         recipes={recipes}
         notFoundText={`No recipes found for "${query}"`}
