@@ -14,6 +14,7 @@ const config = {
     'plugin:import/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:@next/next/recommended',
   ],
   plugins: ['react', 'prettier', '@typescript-eslint', 'react-refresh'],
   rules: {
@@ -59,6 +60,9 @@ const config = {
     ],
   },
   settings: {
+    react: {
+      version: 'detect',
+    },
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
