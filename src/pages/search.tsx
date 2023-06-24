@@ -17,9 +17,9 @@ export const getServerSideProps = async ({
         },
       },
       { $addFields: { id: { $toString: '$_id' } } },
-      { $project: { _id: 0 } },
+      { $project: { _id: 0, id: 1, title: 1, slug: 1, summary: 1 } },
     ],
-  })) as unknown as Recipe[]
+  })) as unknown as Pick<Recipe, 'id' | 'title' | 'slug' | 'summary'>[]
 
   return { props: { query: search, recipes } }
 }

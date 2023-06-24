@@ -1,5 +1,5 @@
 import type { GetServerSidePropsContext } from 'next'
-import { RecipeItem } from '~/components/item'
+import { RecipeCard } from '~/components/recipes/card'
 
 export const getServerSideProps = async ({
   params,
@@ -15,7 +15,7 @@ export const getServerSideProps = async ({
 const Index: InferSSR<typeof getServerSideProps> = ({ recipe }) => {
   if (!recipe) return null
 
-  return <RecipeItem recipe={recipe} headingLink={false} />
+  return <RecipeCard recipe={recipe} headingLink={false} />
 }
 
 export default Index

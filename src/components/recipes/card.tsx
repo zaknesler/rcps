@@ -1,15 +1,13 @@
 import type { Recipe } from '@prisma/client'
 import { cx } from 'class-variance-authority'
 
-type RecipeItemProps = {
+type RecipeCardProps = {
   recipe: Recipe
-  headingLink?: boolean
   className?: string
 }
 
-export const RecipeItem: React.FC<RecipeItemProps> = ({
+export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
-  headingLink = true,
   className,
 }) => (
   <article
@@ -20,18 +18,9 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({
       className,
     )}
   >
-    {headingLink ? (
-      <a
-        className="max-w-lg text-2xl font-bold leading-snug hover:underline md:text-3xl"
-        href={`/recipe/${recipe.slug}`}
-      >
-        {recipe.title}
-      </a>
-    ) : (
-      <h1 className="max-w-lg text-2xl font-bold leading-snug md:text-3xl">
-        {recipe.title}
-      </h1>
-    )}
+    <h1 className="max-w-lg text-2xl font-bold leading-snug md:text-3xl">
+      {recipe.title}
+    </h1>
 
     <p>{recipe.summary}</p>
 

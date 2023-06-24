@@ -11,6 +11,7 @@ export const getServerSideProps = async ({
   if (!validTags.includes(tag)) return { notFound: true }
   const recipes = await prisma.recipe.findMany({
     where: { tags: { has: tag } },
+    select: { id: true, title: true, slug: true, summary: true },
   })
 
   return { props: { tag, recipes } }
