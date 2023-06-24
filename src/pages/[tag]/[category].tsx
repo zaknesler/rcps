@@ -18,7 +18,7 @@ export const getServerSideProps = async ({
         },
       },
     },
-    select: { id: true, title: true, slug: true, summary: false },
+    select: { id: true, title: true, slug: true, summary: true },
   })
 
   return { props: { tag, recipes } }
