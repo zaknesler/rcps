@@ -15,7 +15,7 @@ export const getServerSideProps = async ({
 const Index: InferSSR<typeof getServerSideProps> = ({ recipe }) => {
   if (!recipe) return null
 
-  return <RecipeCard recipe={recipe} headingLink={false} />
+  return <RecipeCard recipe={recipe} />
 }
 
 export default Index
