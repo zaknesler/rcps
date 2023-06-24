@@ -8,7 +8,7 @@ export const getServerSideProps = async ({
 
   const { prisma } = await import('../server/db/client')
   const recipes = await prisma.recipe.findMany({
-    where: { title: { contains: search } },
+    where: { title: { contains: search, mode: 'insensitive' } },
   })
 
   return { props: { query: search, recipes } }
