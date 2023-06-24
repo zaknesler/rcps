@@ -20,18 +20,14 @@ export const recipeRouter = router({
             amount: z.string(),
             name: z.string(),
             prep: z.string().optional(),
-            note_symbol: z.string().optional(),
+            note_id: z.string().optional(),
           }),
         ),
         steps: z.array(z.object({ text: z.string() })),
-        notes: z.array(
-          z.object({ symbol: z.string().optional(), text: z.string() }),
-        ),
+        notes: z.array(z.object({ id: z.string(), text: z.string() })),
       }),
     )
     .mutation(async ({ input, ctx }) =>
-      ctx.prisma.recipe.create({
-        data: input,
-      }),
+      ctx.prisma.recipe.create({ data: input }),
     ),
 })
