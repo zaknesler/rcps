@@ -1,3 +1,4 @@
+import type { Recipe } from '@prisma/client'
 import type { GetServerSidePropsContext } from 'next'
 import { RecipeList } from '~/components/list'
 
@@ -7,9 +8,18 @@ export const getServerSideProps = async ({
   const search = query.q as string
 
   const { prisma } = await import('../server/db/client')
-  const recipes = await prisma.recipe.findMany({
-    where: { title: { contains: search, mode: 'insensitive' } },
-  })
+  const recipes = (await prisma.recipe.aggregateRaw({
+    pipeline: [
+      {
+        $search: {
+          index: 'search',
+          text: { query: search, path: { wildcard: '*' } },
+        },
+      },
+      { $addFields: { id: { $toString: '$_id' } } },
+      { $project: { _id: 0 } },
+    ],
+  })) as unknown as Recipe[]
 
   return { props: { query: search, recipes } }
 }

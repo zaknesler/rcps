@@ -9,7 +9,6 @@ const monoFont = IBM_Plex_Mono({
   weight: ['400', '600'],
   style: ['normal'],
   subsets: ['latin'],
-  display: 'swap',
   variable: '--font-mono',
 })
 
