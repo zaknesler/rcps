@@ -15,8 +15,15 @@ const config = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:@next/next/recommended',
+    'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['react', 'prettier', '@typescript-eslint', 'react-refresh'],
+  plugins: [
+    'react',
+    'prettier',
+    '@typescript-eslint',
+    'react-refresh',
+    'jsx-a11y',
+  ],
   rules: {
     'import/default': 'error',
     'import/named': 'error',

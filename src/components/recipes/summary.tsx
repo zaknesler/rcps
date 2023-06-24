@@ -12,8 +12,6 @@ export const RecipeSummary: React.FC<RecipeSummaryProps> = ({
   className,
 }) => (
   <a
-    aria-label={recipe.title}
-    aria-description={recipe.summary}
     href={`/recipe/${recipe.slug}`}
     className={cx(
       'flex flex-col gap-6 border border-black p-4 text-sm ring-gray-200 transition-shadow hover:bg-gray-50 hover:ring-4 hover:ring-offset-4 md:p-8 md:text-base',
