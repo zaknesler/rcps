@@ -1,15 +1,15 @@
 import type { GetServerSidePropsContext } from 'next'
 import { RecipeList } from '~/components/list'
-import { validTags, allRecipes } from '~/constants/recipes'
-import type { Tag } from '~/types/recipe'
+import { validTags } from '~/constants/recipes'
 
 export const getServerSideProps = async ({
   params,
 }: GetServerSidePropsContext) => {
-  if (!validTags.includes(params?.tag as Tag)) return { notFound: true }
+  const { prisma } = await import('../server/db/client')
+  const tag = params?.tag as string
 
-  const tag = params?.tag as Tag
-  const recipes = allRecipes.filter(recipe => recipe.tags?.includes(tag))
+  if (!validTags.includes(tag)) return { notFound: true }
+  const recipes = await prisma.recipe.findMany({})
 
   return { props: { tag, recipes } }
 }

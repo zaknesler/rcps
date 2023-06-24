@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_CONNECTION_URL")
+}
+
+model Recipe {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String       @unique
+  title       String
+  summary     String
+  ingredients Ingredient[]
+  steps       Step[]
+  tags        String[]
+  notes       Note[]
+}
+
+type Ingredient {
+  amount      String
+  name        String
+  prep        String?
+  note_symbol String?
+}
+
+type Step {
+  text String
+}
+
+type Note {
+  symbol String?
+  text   String
+}

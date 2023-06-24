@@ -1,4 +1,4 @@
-import type { Recipe } from '~/types/recipe'
+import type { Recipe } from '@prisma/client'
 import { RecipeItem } from './item'
 
 type RecipeListProps = {

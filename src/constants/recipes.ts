@@ -1,5 +1,3 @@
-import type { Recipe } from '~/types/recipe'
-
 export const validTags = [
   'breakfast',
   'lunch',
@@ -7,9 +5,9 @@ export const validTags = [
   'snacks',
   'vegan',
   'drinks',
-] as const
+]
 
-export const allRecipes: Recipe[] = [
+export const allRecipes = [
   {
     id: 1,
     slug: 'raw-kombucha',

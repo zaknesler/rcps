@@ -1,17 +1,15 @@
 import type { GetServerSidePropsContext } from 'next'
 import { RecipeList } from '~/components/list'
-import { allRecipes } from '~/constants/recipes'
 
 export const getServerSideProps = async ({
   query,
 }: GetServerSidePropsContext) => {
   const search = query.q as string
-  if (!search) return { notFound: true }
-  const recipes = allRecipes.filter(
-    recipe =>
-      recipe.title.toLowerCase().includes(search.toLowerCase()) ||
-      recipe.tags?.includes(search.toLowerCase() as any),
-  )
+
+  const { prisma } = await import('../server/db/client')
+  const recipes = await prisma.recipe.findMany({
+    where: { title: { contains: search } },
+  })
 
   return { props: { query: search, recipes } }
 }

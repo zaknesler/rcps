@@ -1,11 +1,10 @@
 import { RecipeList } from '~/components/list'
-import { allRecipes } from '~/constants/recipes'
+import { api } from '~/utils/api'
 
-export const getServerSideProps = () => {
-  return { props: { recipes: allRecipes } }
-}
+const Index = () => {
+  const { data: recipes } = api.recipes.list.useQuery()
 
-const Index: InferSSR<typeof getServerSideProps> = ({ recipes }) => {
+  if (!recipes) return null
   return <RecipeList recipes={recipes} />
 }
 

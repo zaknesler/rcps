@@ -1,10 +1,37 @@
 import { z } from 'zod'
 import { allRecipes } from '~/constants/recipes'
-import { createTRPCRouter, publicProcedure } from '~/server/api/trpc'
+import { router, procedures } from '~/server/api/trpc'
 
-export const recipeRouter = createTRPCRouter({
-  list: publicProcedure.query(() => allRecipes),
-  show: publicProcedure
+export const recipeRouter = router({
+  list: procedures.public.query(async ({ ctx }) =>
+    ctx.prisma.recipe.findMany({}),
+  ),
+  show: procedures.public
     .input(z.object({ id: z.number() }))
     .query(({ input }) => allRecipes.find(recipe => recipe.id === input.id)),
+  create: procedures.public
+    .input(
+      z.object({
+        slug: z.string(),
+        title: z.string(),
+        summary: z.string(),
+        ingredients: z.array(
+          z.object({
+            amount: z.string(),
+            name: z.string(),
+            prep: z.string().optional(),
+            note_symbol: z.string().optional(),
+          }),
+        ),
+        steps: z.array(z.object({ text: z.string() })),
+        notes: z.array(
+          z.object({ symbol: z.string().optional(), text: z.string() }),
+        ),
+      }),
+    )
+    .mutation(async ({ input, ctx }) =>
+      ctx.prisma.recipe.create({
+        data: input,
+      }),
+    ),
 })

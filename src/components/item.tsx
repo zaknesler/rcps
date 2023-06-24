@@ -1,5 +1,5 @@
+import type { Recipe } from '@prisma/client'
 import { cx } from 'class-variance-authority'
-import type { Recipe } from '~/types/recipe'
 
 type RecipeItemProps = {
   recipe: Recipe
@@ -55,8 +55,8 @@ export const RecipeItem: React.FC<RecipeItemProps> = ({
     <section className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold md:text-xl">Instructions</h2>
       <ol className="ml-8 flex list-decimal flex-col gap-4">
-        {recipe.steps.map((instruction, index) => (
-          <li key={index}>{instruction}</li>
+        {recipe.steps.map((step, index) => (
+          <li key={index}>{step.text}</li>
         ))}
       </ol>
     </section>
