@@ -13,7 +13,7 @@ export const getServerSideProps = async ({
       {
         $search: {
           index: 'search',
-          text: { query: search, path: { wildcard: '*' } },
+          text: { query: search, path: { wildcard: '*' }, fuzzy: {} },
         },
       },
       { $addFields: { id: { $toString: '$_id' } } },
