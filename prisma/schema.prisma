@@ -19,10 +19,11 @@ model Recipe {
 }
 
 type Ingredient {
-  amount  String
-  name    String
-  prep    String?
-  note_id String?
+  amount   String
+  name     String
+  prep     String?
+  note_id  String?
+  to_taste Boolean?
 }
 
 type Step {

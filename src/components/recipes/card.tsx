@@ -38,6 +38,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             <li key={`ingredient-${index}`}>
               <strong>{ingredient.amount}</strong> {ingredient.name}
               {ingredient.prep && `, ${ingredient.prep}`}
+              {ingredient.to_taste && `, or to taste`}
               {ingredient.note_id && (
                 <a href={`#note-${recipe.slug}-${ingredient.note_id}`}>
                   {
