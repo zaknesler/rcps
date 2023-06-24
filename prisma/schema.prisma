@@ -14,22 +14,27 @@ model Recipe {
   summary     String
   ingredients Ingredient[]
   steps       Step[]
-  tags        String[]
+  tags        Tag[]
   notes       Note[]
 }
 
 type Ingredient {
-  amount      String
-  name        String
-  prep        String?
-  note_symbol String?
+  amount  String
+  name    String
+  prep    String?
+  note_id String?
 }
 
 type Step {
   text String
 }
 
+type Tag {
+  name       String
+  categories String[]
+}
+
 type Note {
-  symbol String?
-  text   String
+  id   String
+  text String
 }

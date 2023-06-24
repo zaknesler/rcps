@@ -6,6 +6,8 @@ type RecipeCardProps = {
   className?: string
 }
 
+const noteSymbols = ['*', '**', '†', '‡', '§', '‖', '¶', '‡‡', '§§']
+
 export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   className,
@@ -30,9 +32,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           <li key={`ingredient-${index}`}>
             <strong>{ingredient.amount}</strong> {ingredient.name}
             {ingredient.prep && `, ${ingredient.prep}`}
-            {ingredient.note_symbol && (
-              <a href={`#note-${recipe.slug}-${ingredient.note_symbol}`}>
-                {ingredient.note_symbol}
+            {ingredient.note_id && (
+              <a href={`#note-${recipe.slug}-${ingredient.note_id}`}>
+                {noteSymbols[index % noteSymbols.length]}
               </a>
             )}
           </li>
@@ -52,8 +54,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
     <section className="flex flex-col gap-4">
       <h2 className="text-lg font-semibold md:text-xl">Notes</h2>
       {recipe.notes?.map((note, index) => (
-        <p key={`note-${index}`} id={`note-${recipe.slug}-${note.symbol}`}>
-          {note.symbol}
+        <p key={`note-${index}`} id={`note-${recipe.slug}-${note.id}`}>
+          {noteSymbols[index % noteSymbols.length]}
           {note.text}
         </p>
       ))}
