@@ -1,5 +1,6 @@
 import type { Recipe } from '@prisma/client'
 import { cx } from 'class-variance-authority'
+import Link from 'next/link'
 
 type RecipeSummaryProps = {
   recipe: Pick<Recipe, 'id' | 'title' | 'slug' | 'summary'>
@@ -11,7 +12,7 @@ export const RecipeSummary: React.FC<RecipeSummaryProps> = ({
   recipe,
   className,
 }) => (
-  <a
+  <Link
     href={`/recipe/${recipe.slug}`}
     className={cx(
       'flex flex-col gap-6 border border-black p-4 text-sm ring-gray-200 transition-shadow hover:bg-gray-50 hover:ring-4 hover:ring-offset-4 md:p-8 md:text-base',
@@ -23,5 +24,5 @@ export const RecipeSummary: React.FC<RecipeSummaryProps> = ({
     </h1>
 
     <p>{recipe.summary}</p>
-  </a>
+  </Link>
 )

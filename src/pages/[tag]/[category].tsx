@@ -1,49 +1,29 @@
-import type { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import { RecipeList } from '~/components/list'
 import { CategoryList } from '~/components/recipes/category-list'
-import { validTags } from '~/constants/tags'
+import { api } from '~/utils/api'
 
-export const getServerSideProps = async ({
-  params,
-}: GetServerSidePropsContext) => {
-  const { prisma } = await import('../../server/db/client')
+export const getServerSideProps = async ({ params }: SSPC) => ({
+  props: {
+    tag: params?.tag as string,
+    category: params?.category as string,
+  },
+})
 
-  const tag = validTags.find(item => item.value === (params?.tag as string))
-  const category = tag?.categories?.find(
-    item => item.value === (params?.category as string),
-  )
-  if (!tag || !category) return { notFound: true }
+const Index: InferSSP<typeof getServerSideProps> = ({ tag, category }) => {
+  const { data } = api.recipes.byTagAndCategory.useQuery({ tag, category })
 
-  const recipes = await prisma.recipe.findMany({
-    where: {
-      tags: {
-        some: {
-          name: tag.value,
-          categories: { has: category.value },
-        },
-      },
-    },
-    select: { id: true, title: true, slug: true, summary: true },
-  })
+  if (!data?.tag || !data.category) return null
 
-  return { props: { tag, category, recipes } }
-}
-
-const Index: InferSSR<typeof getServerSideProps> = ({
-  tag,
-  category,
-  recipes,
-}) => {
   return (
     <>
       <Head>
-        <title>{`${tag.value}/${category.value} recipes - r.c.p.s`}</title>
+        <title>{`${data.tag.value}/${data.category.value} recipes - r.c.p.s`}</title>
       </Head>
 
       <div className="flex flex-col gap-8">
-        <CategoryList tag={tag} selectedCategory={category.value} />
-        <RecipeList recipes={recipes} />
+        <CategoryList tag={data.tag} selectedCategory={data.category.value} />
+        <RecipeList recipes={data.recipes} />
       </div>
     </>
   )

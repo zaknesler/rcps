@@ -1,4 +1,5 @@
 import { cx } from 'class-variance-authority'
+import Link from 'next/link'
 import type { Tag } from '~/constants/tags'
 
 type CategoryListProps = {
@@ -12,7 +13,8 @@ export const CategoryList: React.FC<CategoryListProps> = ({
 }) => (
   <div className="grid grid-cols-2 gap-4 font-semibold md:grid-cols-3 lg:grid-cols-4">
     {tag.categories?.map(category => (
-      <a
+      <Link
+        key={category.value}
         href={
           selectedCategory ? `/${tag.value}` : `/${tag.value}/${category.value}`
         }
@@ -23,7 +25,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({
         )}
       >
         {category.name}
-      </a>
+      </Link>
     ))}
   </div>
 )

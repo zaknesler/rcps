@@ -1,19 +1,17 @@
-import type { GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { RecipeCard } from '~/components/recipes/card'
+import { api } from '~/utils/api'
 
-export const getServerSideProps = async ({
-  params,
-}: GetServerSidePropsContext) => {
-  const slug = params?.slug as string
+export const getServerSideProps = async ({ params }: SSPC) => ({
+  props: { slug: params?.slug as string },
+})
 
-  const { prisma } = await import('../../server/db/client')
-  const recipe = await prisma.recipe.findFirst({ where: { slug } })
+const Index: InferSSP<typeof getServerSideProps> = ({ slug: _slug }) => {
+  const router = useRouter()
+  const slug = (router.query.slug as string) || _slug
 
-  return { props: { recipe } }
-}
-
-const Index: InferSSR<typeof getServerSideProps> = ({ recipe }) => {
+  const { data: recipe } = api.recipes.show.useQuery({ slug })
   if (!recipe) return null
 
   return (
