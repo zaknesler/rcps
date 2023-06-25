@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mongo:
+    image: prismagraphql/mongo-single-replica:4.4.3-bionic
+    restart: always
+    ports:
+      - 30000:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=rcps
