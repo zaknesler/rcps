@@ -16,7 +16,9 @@ export const CategoryList: React.FC<CategoryListProps> = ({
       <Link
         key={category.value}
         href={
-          selectedCategory ? `/${tag.value}` : `/${tag.value}/${category.value}`
+          selectedCategory === category.value
+            ? `/${tag.value}`
+            : `/${tag.value}/${category.value}`
         }
         className={cx(
           'border border-black p-4 ring-gray-300 transition-shadow hover:bg-gray-50 hover:text-black hover:ring-2 hover:ring-offset-2',
