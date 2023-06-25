@@ -17,7 +17,11 @@ export const recipeRouter = router({
           {
             $search: {
               index: 'search',
-              text: { query: input.query, path: { wildcard: '*' }, fuzzy: {} },
+              text: {
+                query: input.query,
+                path: { wildcard: '*' },
+                fuzzy: { maxEdits: 1 },
+              },
             },
           },
           { $addFields: { id: { $toString: '$_id' } } },
