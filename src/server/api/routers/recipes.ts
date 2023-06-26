@@ -1,6 +1,5 @@
 import { type Recipe } from '@prisma/client'
 import { z } from 'zod'
-import { validTags } from '~/constants/tags'
 import { router, procedures } from '~/server/api/trpc'
 
 export const recipeRouter = router({
@@ -40,37 +39,25 @@ export const recipeRouter = router({
 
   byTag: procedures.public
     .input(z.object({ tag: z.string() }))
-    .query(async ({ input, ctx }) => ({
-      tag: validTags.find(t => t.value === input.tag.toLowerCase().trim()),
-      recipes: await ctx.prisma.recipe.findMany({
+    .query(async ({ input, ctx }) =>
+      ctx.prisma.recipe.findMany({
         where: { tags: { some: { name: input.tag } } },
         select: { id: true, title: true, slug: true, summary: true },
       }),
-    })),
+    ),
 
   byTagAndCategory: procedures.public
     .input(z.object({ tag: z.string(), category: z.string() }))
-    .query(async ({ input, ctx }) => {
-      const tag = validTags.find(
-        t => t.value === input.tag.toLowerCase().trim(),
-      )
-      const category = tag?.categories.find(
-        item => item.value === input.category,
-      )
-
-      return {
-        tag,
-        category,
-        recipes: await ctx.prisma.recipe.findMany({
-          where: {
-            tags: {
-              some: { name: tag?.value, categories: { has: category?.value } },
-            },
+    .query(async ({ input, ctx }) =>
+      ctx.prisma.recipe.findMany({
+        where: {
+          tags: {
+            some: { name: input.tag, categories: { has: input.category } },
           },
-          select: { id: true, title: true, slug: true, summary: true },
-        }),
-      }
-    }),
+        },
+        select: { id: true, title: true, slug: true, summary: true },
+      }),
+    ),
 
   create: procedures.auth
     .input(

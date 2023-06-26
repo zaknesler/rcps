@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { RecipeCard } from '~/components/recipes/card'
 import { api } from '~/utils/api'
 
@@ -7,10 +6,7 @@ export const getServerSideProps = async ({ params }: SSPC) => ({
   props: { slug: params?.slug as string },
 })
 
-const Index: InferSSP<typeof getServerSideProps> = ({ slug: _slug }) => {
-  const router = useRouter()
-  const slug = (router.query.slug as string) || _slug
-
+const Index: InferSSP<typeof getServerSideProps> = ({ slug }) => {
   const { data: recipe, isLoading } = api.recipes.show.useQuery({ slug })
 
   return (
