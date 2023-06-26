@@ -7,7 +7,7 @@ export const getServerSideProps = async ({ query }: SSPC) => ({
 })
 
 const Index: InferSSP<typeof getServerSideProps> = ({ query }) => {
-  const { data: recipes } = api.recipes.search.useQuery({
+  const { data: recipes, isLoading } = api.recipes.search.useQuery({
     query,
   })
 
@@ -25,6 +25,7 @@ const Index: InferSSP<typeof getServerSideProps> = ({ query }) => {
       )}
 
       <RecipeList
+        isLoading={isLoading}
         recipes={recipes}
         notFoundText={`No recipes found for "${query}"`}
       />

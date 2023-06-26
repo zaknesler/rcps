@@ -8,18 +8,17 @@ export const getServerSideProps = async ({ params }: SSPC) => ({
 })
 
 const Index: InferSSP<typeof getServerSideProps> = ({ tag }) => {
-  const { data } = api.recipes.byTag.useQuery({ tag })
-  if (!data?.tag) return null
+  const { data, isLoading } = api.recipes.byTag.useQuery({ tag })
 
   return (
     <>
       <Head>
-        <title>{`${data.tag?.value} recipes - r.c.p.s`}</title>
+        <title>{`${data?.tag?.value} recipes - r.c.p.s`}</title>
       </Head>
 
       <div className="flex flex-col gap-8">
-        <CategoryList tag={data.tag} />
-        <RecipeList recipes={data.recipes} />
+        {data?.tag && <CategoryList tag={data.tag} />}
+        <RecipeList isLoading={isLoading} recipes={data?.recipes} />
       </div>
     </>
   )

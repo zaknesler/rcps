@@ -11,22 +11,24 @@ const Index: InferSSP<typeof getServerSideProps> = ({ slug: _slug }) => {
   const router = useRouter()
   const slug = (router.query.slug as string) || _slug
 
-  const { data: recipe } = api.recipes.show.useQuery({ slug })
-  if (!recipe) return null
+  const { data: recipe, isLoading } = api.recipes.show.useQuery({ slug })
 
   return (
     <>
-      <Head>
-        <title>{`${recipe.title} - r.c.p.s`}</title>
-        <meta name="description" content={recipe.summary} />
-        <meta
-          property="og:title"
-          content={`${recipe.title} Recipe - r.c.p.s`}
-        />
-        <meta property="og:description" content={recipe.summary} />
-        <meta property="og:type" content="article" />
-      </Head>
-      <RecipeCard recipe={recipe} />
+      {recipe && (
+        <Head>
+          <title>{`${recipe.title} - r.c.p.s`}</title>
+          <meta name="description" content={recipe.summary} />
+          <meta
+            property="og:title"
+            content={`${recipe.title} Recipe - r.c.p.s`}
+          />
+          <meta property="og:description" content={recipe.summary} />
+          <meta property="og:type" content="article" />
+        </Head>
+      )}
+
+      <RecipeCard isLoading={isLoading} recipe={recipe} />
     </>
   )
 }

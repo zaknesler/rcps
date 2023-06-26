@@ -72,7 +72,7 @@ export const recipeRouter = router({
       }
     }),
 
-  create: procedures.public
+  create: procedures.auth
     .input(
       z.object({
         slug: z.string(),
