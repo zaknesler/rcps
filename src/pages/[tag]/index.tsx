@@ -1,21 +1,31 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { RecipeList } from '~/components/list'
 import { CategoryList } from '~/components/recipes/category-list'
 import { validTags } from '~/constants/tags'
 import { api } from '~/utils/api'
 
-export const getServerSideProps = async ({ params }: SSPC) => {
-  const tag = validTags.find(
-    t => t.value === (params?.tag as string).toLowerCase().trim(),
-  )
-  if (!tag) return { notFound: true }
-  return { props: { tag } }
-}
+const Index = () => {
+  const router = useRouter()
 
-const Index: InferSSP<typeof getServerSideProps> = ({ tag }) => {
+  const tagParam = router.query?.tag as string | undefined
+  const categories =
+    (router.query?.categories as string | undefined)?.split(',') ?? []
+
+  const tag = validTags.find(t => t.value === tagParam?.toLowerCase().trim())
+  if (!tag) return null
+
   const { data: recipes, isLoading } = api.recipes.byTag.useQuery({
     tag: tag.value,
+    categories,
   })
+
+  const handleChange = (categories: string[]) => {
+    const query = categories.length
+      ? `?categories=${categories.sort().join(',')}`
+      : ''
+    router.push(`/${tag.value}${query}`)
+  }
 
   return (
     <>
@@ -24,7 +34,7 @@ const Index: InferSSP<typeof getServerSideProps> = ({ tag }) => {
       </Head>
 
       <div className="flex flex-col gap-8">
-        <CategoryList tag={tag} />
+        <CategoryList tag={tag} selected={categories} onChange={handleChange} />
         <RecipeList isLoading={isLoading} recipes={recipes} />
       </div>
     </>

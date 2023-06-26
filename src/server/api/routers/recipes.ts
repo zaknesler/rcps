@@ -38,21 +38,15 @@ export const recipeRouter = router({
     ),
 
   byTag: procedures.public
-    .input(z.object({ tag: z.string() }))
-    .query(async ({ input, ctx }) =>
-      ctx.prisma.recipe.findMany({
-        where: { tags: { some: { name: input.tag } } },
-        select: { id: true, title: true, slug: true, summary: true },
-      }),
-    ),
-
-  byTagAndCategory: procedures.public
-    .input(z.object({ tag: z.string(), category: z.string() }))
+    .input(z.object({ tag: z.string(), categories: z.array(z.string()) }))
     .query(async ({ input, ctx }) =>
       ctx.prisma.recipe.findMany({
         where: {
           tags: {
-            some: { name: input.tag, categories: { has: input.category } },
+            some: {
+              name: input.tag,
+              categories: { hasEvery: input.categories },
+            },
           },
         },
         select: { id: true, title: true, slug: true, summary: true },
