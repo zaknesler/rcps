@@ -1,4 +1,6 @@
 export type Tag = (typeof validTags)[number]
+export type Category = Tag['categories'][number]
+
 export const validTags = [
   {
     name: 'Breakfast',

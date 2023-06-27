@@ -5,15 +5,19 @@ import { CategoryList } from '~/components/recipes/category-list'
 import { validTags } from '~/constants/tags'
 import { api } from '~/utils/api'
 
-const Index = () => {
+export const getServerSideProps = async ({ params }: SSPC) => {
+  const tagParam = params?.tag as string | undefined
+  const tag = validTags.find(t => t.value === tagParam?.toLowerCase().trim())
+  if (!tag) return { notFound: true }
+
+  return { props: { tag } }
+}
+
+const Index: InferSSP<typeof getServerSideProps> = ({ tag }) => {
   const router = useRouter()
 
-  const tagParam = router.query?.tag as string | undefined
   const categories =
     (router.query?.categories as string | undefined)?.split(',') ?? []
-
-  const tag = validTags.find(t => t.value === tagParam?.toLowerCase().trim())
-  if (!tag) return null
 
   const { data: recipes, isLoading } = api.recipes.byTag.useQuery({
     tag: tag.value,
@@ -22,7 +26,7 @@ const Index = () => {
 
   const handleChange = (categories: string[]) => {
     const query = categories.length
-      ? `?categories=${categories.sort().join(',')}`
+      ? `?categories=${categories.sort().join('%2C')}`
       : ''
     router.push(`/${tag.value}${query}`)
   }

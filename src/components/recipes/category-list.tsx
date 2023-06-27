@@ -1,5 +1,5 @@
 import { cx } from 'class-variance-authority'
-import type { Tag } from '~/constants/tags'
+import type { Category, Tag } from '~/constants/tags'
 
 type CategoryListProps = {
   tag: Tag
@@ -14,7 +14,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({
 }) => {
   const isSelected = (category: string) => selected?.includes(category)
 
-  const handleClick = (category: Tag['categories'][number]) => {
+  const handleClick = (category: Category) => {
     onChange(
       isSelected(category.value)
         ? selected?.filter(c => c !== category.value)
