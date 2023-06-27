@@ -44,46 +44,61 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
             <p>{recipe.summary}</p>
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-lg font-semibold md:text-xl">Ingredients</h2>
-              <ul className="ml-8 flex list-disc flex-col gap-1.5">
-                {recipe.ingredients.map((ingredient, index) => (
-                  <li key={`ingredient-${index}`}>
-                    <strong>{ingredient.amount}</strong> {ingredient.name}
-                    {ingredient.prep && `, ${ingredient.prep}`}
-                    {ingredient.to_taste && `, or to taste`}
-                    {ingredient.note_id && (
-                      <a href={`#note-${recipe.slug}-${ingredient.note_id}`}>
-                        {
-                          notesWithSymbols?.find(
-                            note => note.id === ingredient.note_id,
-                          )?.symbol
-                        }
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
+            {!!recipe.ingredients.length && (
+              <section className="flex flex-col gap-4">
+                <h2 className="text-lg font-semibold md:text-xl">
+                  Ingredients
+                </h2>
+                <ul className="ml-8 flex list-disc flex-col gap-1.5">
+                  {recipe.ingredients.map((ingredient, index) => (
+                    <li key={`ingredient-${index}`}>
+                      <strong>{ingredient.amount}</strong> {ingredient.name}
+                      {ingredient.prep && `, ${ingredient.prep}`}
+                      {ingredient.to_taste && `, or to taste`}
+                      {ingredient.note_id && (
+                        <a href={`#note-${recipe.slug}-${ingredient.note_id}`}>
+                          {
+                            notesWithSymbols?.find(
+                              note => note.id === ingredient.note_id,
+                            )?.symbol
+                          }
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-lg font-semibold md:text-xl">Instructions</h2>
-              <ol className="ml-8 flex list-decimal flex-col gap-4">
-                {recipe.steps.map((step, index) => (
-                  <li key={`step-${index}`}>{step.text}</li>
-                ))}
-              </ol>
-            </section>
+            {!!recipe.steps.length && (
+              <section className="flex flex-col gap-4">
+                <h2 className="text-lg font-semibold md:text-xl">
+                  Instructions
+                </h2>
+                <ol className="ml-8 flex list-decimal flex-col gap-4">
+                  {recipe.steps.map((step, index) => (
+                    <li key={`step-${index}`}>{step.text}</li>
+                  ))}
+                </ol>
+              </section>
+            )}
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-lg font-semibold md:text-xl">Notes</h2>
-              {recipe.notes?.map((note, index) => (
-                <p key={`note-${index}`} id={`note-${recipe.slug}-${note.id}`}>
-                  {noteSymbols[index % noteSymbols.length]}
-                  {note.text}
-                </p>
-              ))}
-            </section>
+            {!!recipe.notes.length && (
+              <section className="flex flex-col gap-4">
+                <h2 className="text-lg font-semibold md:text-xl">Notes</h2>
+                {recipe.notes.map((note, index) => (
+                  <p
+                    key={`note-${index}`}
+                    id={`note-${recipe.slug}-${note.id}`}
+                  >
+                    {recipe.ingredients.some(
+                      ingredient => ingredient.note_id === note.id,
+                    ) && noteSymbols[index % noteSymbols.length]}
+                    {note.text}
+                  </p>
+                ))}
+              </section>
+            )}
           </>
         )
       )}

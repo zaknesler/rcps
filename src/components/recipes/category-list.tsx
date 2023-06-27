@@ -12,15 +12,14 @@ export const CategoryList: React.FC<CategoryListProps> = ({
   selected,
   onChange,
 }) => {
-  const isSelected = (category: string) => selected?.includes(category)
+  const isSelected = (category: string) => selected.includes(category)
 
-  const handleClick = (category: Category) => {
+  const handleClick = (category: Category) =>
     onChange(
       isSelected(category.value)
         ? selected?.filter(c => c !== category.value)
         : [...selected, category.value],
     )
-  }
 
   return (
     <div className="grid grid-cols-2 gap-4 font-semibold md:grid-cols-3 lg:grid-cols-4">
