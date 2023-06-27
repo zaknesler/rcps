@@ -68,7 +68,7 @@ export const validTags = [
       { name: 'Fruit', value: 'fruit' },
       { name: 'Alcoholic', value: 'alcoholic' },
       { name: 'Non-Alcoholic', value: 'non-alcoholic' },
-      { name: 'Smoothies', value: 'smoothies' },
+      { name: 'Smoothie', value: 'smoothie' },
       { name: 'Vegan', value: 'vegan' },
     ],
   },
