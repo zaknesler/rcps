@@ -8,21 +8,24 @@ datasource db {
 }
 
 model Recipe {
-  id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  slug        String       @unique
-  title       String
-  summary     String
-  ingredients Ingredient[]
-  steps       Step[]
-  tags        Tag[]
-  notes       Note[]
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  slug           String          @unique
+  title          String
+  summary        String
+  ingredients    Ingredient[]
+  steps          Step[]
+  tags           Tag[]
+  notes          Note[]
+  nutrition_info NutritionInfo[]
 }
 
 type Ingredient {
+  id      String  @map("_id") @db.ObjectId
+  note_id String? @map("_note_id") @db.ObjectId
+
   amount   String
   name     String
   prep     String?
-  note_id  String?
   to_taste Boolean?
 }
 
@@ -36,6 +39,41 @@ type Tag {
 }
 
 type Note {
-  id   String
+  id   String @map("_id") @db.ObjectId
   text String
+}
+
+type NutritionInfo {
+  id            String @map("_id") @db.ObjectId
+  ingredient_id String @map("_ingredient_id") @db.ObjectId
+
+  food_name String?
+
+  // Serving
+  serving_qty          Float?
+  serving_unit         String?
+  serving_weight_grams Float?
+
+  // Statistics
+  stat_calories           Float?
+  stat_total_fat          Float?
+  stat_saturated_fat      Float?
+  stat_cholesterol        Float?
+  stat_sodium             Float?
+  stat_total_carbohydrate Float?
+  stat_dietary_fiber      Float?
+  stat_sugars             Float?
+  stat_protein            Float?
+  stat_potassium          Float?
+  stat_p                  Float?
+
+  alt_measures NutritionAltMeasure[]
+}
+
+type NutritionAltMeasure {
+  serving_weight Float
+  measure        String
+  seq            Int?
+  qty            Float
+  nutritionId    Int
 }

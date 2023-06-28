@@ -1,6 +1,7 @@
 import type { Recipe } from '@prisma/client'
 import { cx } from 'class-variance-authority'
 import { PulsingItems } from '~/components/pulsing-items'
+import { api } from '~/utils/api'
 
 type RecipeCardProps = {
   isLoading?: boolean
@@ -15,10 +16,17 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   className,
 }) => {
+  const { mutateAsync } = api.nutrients.fetch.useMutation()
+
   const notesWithSymbols = recipe?.notes?.map((note, index) => ({
     ...note,
     symbol: noteSymbols[index % noteSymbols.length],
   }))
+
+  const handleClick = () => {
+    if (!recipe) return null
+    mutateAsync({ recipeId: recipe.id }).then(console.log)
+  }
 
   return (
     <article
@@ -44,14 +52,16 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
 
             <p>{recipe.summary}</p>
 
+            <button onClick={handleClick}>Fetch nutrients</button>
+
             {!!recipe.ingredients.length && (
               <section className="flex flex-col gap-4">
                 <h2 className="text-lg font-semibold md:text-xl">
                   Ingredients
                 </h2>
                 <ul className="ml-8 flex list-disc flex-col gap-1.5">
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={`ingredient-${index}`}>
+                  {recipe.ingredients.map(ingredient => (
+                    <li key={`ingredient-${ingredient.id}`}>
                       <strong>{ingredient.amount}</strong> {ingredient.name}
                       {ingredient.prep && `, ${ingredient.prep}`}
                       {ingredient.to_taste && `, or to taste`}
