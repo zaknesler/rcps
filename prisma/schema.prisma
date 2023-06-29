@@ -44,6 +44,11 @@ type Note {
 }
 
 type NutritionInfo {
+  summary_stats NutritionStats
+  items         NutritionItem[]
+}
+
+type NutritionItem {
   id            String @map("_id") @db.ObjectId
   ingredient_id String @map("_ingredient_id") @db.ObjectId
 
@@ -54,20 +59,22 @@ type NutritionInfo {
   serving_unit         String?
   serving_weight_grams Float?
 
-  // Statistics
-  stat_calories           Float?
-  stat_total_fat          Float?
-  stat_saturated_fat      Float?
-  stat_cholesterol        Float?
-  stat_sodium             Float?
-  stat_total_carbohydrate Float?
-  stat_dietary_fiber      Float?
-  stat_sugars             Float?
-  stat_protein            Float?
-  stat_potassium          Float?
-  stat_p                  Float?
-
+  stats        NutritionStats
   alt_measures NutritionAltMeasure[]
+}
+
+type NutritionStats {
+  calories           Float?
+  total_fat          Float?
+  saturated_fat      Float?
+  cholesterol        Float?
+  sodium             Float?
+  total_carbohydrate Float?
+  dietary_fiber      Float?
+  sugars             Float?
+  protein            Float?
+  potassium          Float?
+  p                  Float?
 }
 
 type NutritionAltMeasure {

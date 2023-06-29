@@ -34,25 +34,48 @@ export const nutrientsRouter = router({
             serving_qty: food.serving_qty,
             serving_unit: food.serving_unit,
             serving_weight_grams: food.serving_weight_grams,
-            stat_calories: food.nf_calories,
-            stat_total_fat: food.nf_total_fat,
-            stat_saturated_fat: food.nf_saturated_fat,
-            stat_cholesterol: food.nf_cholesterol,
-            stat_sodium: food.nf_sodium,
-            stat_total_carbohydrate: food.nf_total_carbohydrate,
-            stat_dietary_fiber: food.nf_dietary_fiber,
-            stat_sugars: food.nf_sugars,
-            stat_protein: food.nf_protein,
-            stat_potassium: food.nf_potassium,
-            stat_p: food.nf_p,
+            stats: {
+              calories: food.nf_calories,
+              total_fat: food.nf_total_fat,
+              saturated_fat: food.nf_saturated_fat,
+              cholesterol: food.nf_cholesterol,
+              sodium: food.nf_sodium,
+              total_carbohydrate: food.nf_total_carbohydrate,
+              dietary_fiber: food.nf_dietary_fiber,
+              sugars: food.nf_sugars,
+              protein: food.nf_protein,
+              potassium: food.nf_potassium,
+              p: food.nf_p,
+            },
             alt_measures: [],
           }
         },
       ).filter(Boolean as unknown as ExcludesFalsy)
 
+      const nutritionSummary = nutritionInfo
+        .map(info => info.stats)
+        .reduce((acc, stats) => ({
+          calories: acc.calories + stats.calories,
+          total_fat: acc.total_fat + stats.total_fat,
+          saturated_fat: acc.saturated_fat + stats.saturated_fat,
+          cholesterol: acc.cholesterol + stats.cholesterol,
+          sodium: acc.sodium + stats.sodium,
+          total_carbohydrate: acc.total_carbohydrate + stats.total_carbohydrate,
+          dietary_fiber: acc.dietary_fiber + stats.dietary_fiber,
+          sugars: acc.sugars + stats.sugars,
+          protein: acc.protein + stats.protein,
+          potassium: acc.potassium + stats.potassium,
+          p: acc.p + stats.p,
+        }))
+
       await ctx.prisma.recipe.update({
         where: { id: input.recipeId },
-        data: { nutrition_info: nutritionInfo },
+        data: {
+          nutrition_info: {
+            summary_stats: nutritionSummary,
+            items: nutritionInfo,
+          },
+        },
       })
 
       return recipe
