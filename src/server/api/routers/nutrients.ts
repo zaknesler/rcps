@@ -55,17 +55,18 @@ export const nutrientsRouter = router({
       const nutritionSummary = nutritionInfo
         .map(info => info.stats)
         .reduce((acc, stats) => ({
-          calories: acc.calories + stats.calories,
-          total_fat: acc.total_fat + stats.total_fat,
-          saturated_fat: acc.saturated_fat + stats.saturated_fat,
-          cholesterol: acc.cholesterol + stats.cholesterol,
-          sodium: acc.sodium + stats.sodium,
-          total_carbohydrate: acc.total_carbohydrate + stats.total_carbohydrate,
-          dietary_fiber: acc.dietary_fiber + stats.dietary_fiber,
-          sugars: acc.sugars + stats.sugars,
-          protein: acc.protein + stats.protein,
-          potassium: acc.potassium + stats.potassium,
-          p: acc.p + stats.p,
+          calories: (acc.calories || 0) + stats.calories,
+          total_fat: (acc.total_fat || 0) + stats.total_fat,
+          saturated_fat: (acc.saturated_fat || 0) + stats.saturated_fat,
+          cholesterol: (acc.cholesterol || 0) + stats.cholesterol,
+          sodium: (acc.sodium || 0) + stats.sodium,
+          total_carbohydrate:
+            (acc.total_carbohydrate || 0) + stats.total_carbohydrate,
+          dietary_fiber: (acc.dietary_fiber || 0) + stats.dietary_fiber,
+          sugars: (acc.sugars || 0) + stats.sugars,
+          protein: (acc.protein || 0) + stats.protein,
+          potassium: (acc.potassium || 0) + stats.potassium,
+          p: (acc.p || 0) + stats.p,
         }))
 
       await ctx.prisma.recipe.update({
