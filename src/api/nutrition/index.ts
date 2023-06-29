@@ -9,9 +9,9 @@ const HEADERS = {
   'x-app-key': env.NUTRITION_API_APP_KEY,
 }
 
-export const fetchNutritionInfo = async (ingredients: string[]) =>
+export const fetchNutritionInfo = async (query: string) =>
   axios.post<NutrientsResponse>(
     NUTRIENTS_URL,
-    { query: ingredients.join('\n'), timezone: 'US/Eastern' },
+    { query, timezone: 'US/Eastern' },
     { headers: HEADERS },
   )

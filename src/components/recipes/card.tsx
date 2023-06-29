@@ -1,7 +1,6 @@
 import type { Recipe } from '@prisma/client'
 import { cx } from 'class-variance-authority'
 import { PulsingItems } from '~/components/pulsing-items'
-import { api } from '~/utils/api'
 
 type RecipeCardProps = {
   isLoading?: boolean
@@ -16,17 +15,10 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   className,
 }) => {
-  const { mutateAsync } = api.nutrients.fetch.useMutation()
-
   const notesWithSymbols = recipe?.notes?.map((note, index) => ({
     ...note,
     symbol: noteSymbols[index % noteSymbols.length],
   }))
-
-  const handleClick = () => {
-    if (!recipe) return null
-    mutateAsync({ recipeId: recipe.id }).then(console.log)
-  }
 
   return (
     <article
@@ -51,8 +43,6 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
             </h1>
 
             <p>{recipe.summary}</p>
-
-            <button onClick={handleClick}>Fetch nutrients</button>
 
             {!!recipe.ingredients.length && (
               <section className="flex flex-col gap-4">
