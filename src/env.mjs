@@ -9,6 +9,10 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
     MONGO_CONNECTION_URL: z.string(),
+
+    // Nutrition API
+    NUTRITION_API_APP_ID: z.string(),
+    NUTRITION_API_APP_KEY: z.string(),
   },
 
   /**
@@ -27,8 +31,10 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     MONGO_CONNECTION_URL: process.env.MONGO_CONNECTION_URL,
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    NUTRITION_API_APP_ID: process.env.NUTRITION_API_APP_ID,
+    NUTRITION_API_APP_KEY: process.env.NUTRITION_API_APP_KEY,
   },
+
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
    * This is especially useful for Docker builds.

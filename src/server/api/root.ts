@@ -1,14 +1,9 @@
 import { recipeRouter } from '~/server/api/routers/recipes'
 import { router } from '~/server/api/trpc'
+import { nutrientsRouter } from './routers/nutrients'
 
-/**
- * This is the primary router for your server.
- *
- * All routers added in /api/routers should be manually added here.
- */
+export type AppRouter = typeof appRouter
 export const appRouter = router({
   recipes: recipeRouter,
+  nutrients: nutrientsRouter,
 })
-
-// export type definition of API
-export type AppRouter = typeof appRouter

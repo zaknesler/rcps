@@ -11,4 +11,8 @@ declare global {
   >
 
   type SSPC = GetServerSidePropsContext
+
+  type ExcludesFalsy = <T>(
+    value: T,
+  ) => value is Exclude<T, false | null | undefined | '' | 0>
 }

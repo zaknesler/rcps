@@ -50,8 +50,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
                   Ingredients
                 </h2>
                 <ul className="ml-8 flex list-disc flex-col gap-1.5">
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={`ingredient-${index}`}>
+                  {recipe.ingredients.map(ingredient => (
+                    <li key={`ingredient-${ingredient.id}`}>
                       <strong>{ingredient.amount}</strong> {ingredient.name}
                       {ingredient.prep && `, ${ingredient.prep}`}
                       {ingredient.to_taste && `, or to taste`}
