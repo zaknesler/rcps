@@ -16,7 +16,7 @@ model Recipe {
   steps          Step[]
   tags           Tag[]
   notes          Note[]
-  nutrition_info NutritionInfo[]
+  nutrition_info NutritionInfo
 }
 
 type Ingredient {
@@ -44,7 +44,7 @@ type Note {
 }
 
 type NutritionInfo {
-  summary_stats NutritionStats
+  summary_stats NutritionStats?
   items         NutritionItem[]
 }
 
