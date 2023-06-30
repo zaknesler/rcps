@@ -28,7 +28,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({
           key={category.value}
           onClick={() => handleClick(category)}
           className={cx(
-            'border border-black p-4 text-left ring-gray-300 transition-shadow hover:bg-gray-50 hover:text-black hover:ring-2 hover:ring-offset-2',
+            'print-exact border border-black p-4 text-left ring-gray-300 transition-shadow hover:bg-gray-50 hover:text-black hover:ring-2 hover:ring-offset-2',
             isSelected(category.value) &&
               'bg-black text-white hover:bg-gray-800 hover:text-white',
           )}

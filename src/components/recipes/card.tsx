@@ -134,13 +134,11 @@ const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
                 {nutrientData.map(({ attr_id, name_display, value, unit }) => (
                   <li
                     key={attr_id}
-                    className="flex w-full items-baseline gap-1.5"
+                    className="flex w-full max-w-xs items-baseline gap-1.5"
                   >
-                    <span className="flex w-full max-w-xs items-baseline justify-between gap-1.5">
-                      <strong>{name_display}</strong>{' '}
-                      {value && formatDecimal(value)}
-                    </span>
-                    <span className="text-xs">{unit}</span>
+                    <strong className="flex-1">{name_display}</strong>{' '}
+                    {value && formatDecimal(value)}
+                    <span className="w-8 text-xs">{unit}</span>
                   </li>
                 ))}
               </ul>
