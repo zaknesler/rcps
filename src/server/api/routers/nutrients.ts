@@ -12,7 +12,7 @@ export const nutrientsRouter = router({
         where: { id: input.recipeId },
       })
       if (!recipe) throw new Error('Recipe not found')
-      if (!!recipe.nutrition_info.length) return recipe
+      if (!!recipe.nutrition_info) return recipe
 
       const responses = await Promise.all(
         recipe.ingredients.map(async ingredient =>
