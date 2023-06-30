@@ -3,6 +3,23 @@ import { z } from 'zod'
 import { router, procedures } from '~/server/api/trpc'
 
 export const recipeRouter = router({
+  show: procedures.public
+    .input(z.object({ slug: z.string() }))
+    .query(async ({ input, ctx }) =>
+      ctx.prisma.recipe.findFirst({
+        where: { slug: input.slug },
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          summary: true,
+          ingredients: true,
+          steps: true,
+          notes: true,
+        },
+      }),
+    ),
+
   list: procedures.public.query(async ({ ctx }) =>
     ctx.prisma.recipe.findMany({
       select: { id: true, title: true, slug: true, summary: true },
@@ -28,14 +45,6 @@ export const recipeRouter = router({
         ],
       }) as unknown as Pick<Recipe, 'id' | 'title' | 'slug' | 'summary'>[],
   ),
-
-  show: procedures.public
-    .input(z.object({ slug: z.string() }))
-    .query(async ({ input, ctx }) =>
-      ctx.prisma.recipe.findFirst({
-        where: { slug: input.slug },
-      }),
-    ),
 
   byTag: procedures.public
     .input(z.object({ tag: z.string(), categories: z.array(z.string()) }))

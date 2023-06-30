@@ -8,15 +8,17 @@ datasource db {
 }
 
 model Recipe {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  slug           String        @unique
-  title          String
-  summary        String
-  ingredients    Ingredient[]
-  steps          Step[]
-  tags           Tag[]
-  notes          Note[]
-  nutrition_info NutritionInfo
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  slug    String @unique
+  title   String
+  summary String
+
+  ingredients Ingredient[]
+  steps       Step[]
+  tags        Tag[]
+  notes       Note[]
+
+  nutrition_items NutritionItem[]
 }
 
 type Ingredient {
@@ -43,11 +45,6 @@ type Note {
   text String
 }
 
-type NutritionInfo {
-  summary_stats NutritionStats?
-  items         NutritionItem[]
-}
-
 type NutritionItem {
   id            String @map("_id") @db.ObjectId
   ingredient_id String @map("_ingredient_id") @db.ObjectId
@@ -59,22 +56,13 @@ type NutritionItem {
   serving_unit         String?
   serving_weight_grams Float?
 
-  stats        NutritionStats
-  alt_measures NutritionAltMeasure[]
+  nutrient_data NutrientData[]
+  alt_measures  NutritionAltMeasure[]
 }
 
-type NutritionStats {
-  calories           Float?
-  total_fat          Float?
-  saturated_fat      Float?
-  cholesterol        Float?
-  sodium             Float?
-  total_carbohydrate Float?
-  dietary_fiber      Float?
-  sugars             Float?
-  protein            Float?
-  potassium          Float?
-  p                  Float?
+type NutrientData {
+  attr_id Int
+  value   Float
 }
 
 type NutritionAltMeasure {
@@ -82,5 +70,4 @@ type NutritionAltMeasure {
   measure        String
   seq            Int?
   qty            Float
-  nutritionId    Int
 }

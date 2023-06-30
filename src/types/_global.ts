@@ -15,4 +15,8 @@ declare global {
   type ExcludesFalsy = <T>(
     value: T,
   ) => value is Exclude<T, false | null | undefined | '' | 0>
+
+  type ObjectWithKeys<K extends object, V = unknown> = {
+    [key in keyof K]: V
+  }
 }
