@@ -124,12 +124,13 @@ const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
       {!!nutrientData && (
         <section className="flex flex-col gap-4">
           <h2 className="flex items-center gap-1.5 text-lg font-semibold md:text-xl">
-            Nutrition
+            <button onClick={() => setShowNutrition(!showNutrition)}>
+              Nutrition
+            </button>
             <Switch checked={showNutrition} onChange={setShowNutrition} />
           </h2>
           {showNutrition && (
             <div className="flex flex-col gap-4">
-              <p>Estimated nutrition info for recipe:</p>
               <ul className="flex flex-col gap-1.5">
                 {nutrientData.map(({ attr_id, name_display, value, unit }) => (
                   <li
@@ -138,12 +139,13 @@ const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
                   >
                     <strong className="flex-1">{name_display}</strong>{' '}
                     {value && formatDecimal(value)}
-                    <span className="w-8 text-xs">{unit}</span>
+                    <span className="w-6 text-xs">{unit}</span>
                   </li>
                 ))}
               </ul>
               <p className="text-xs">
-                Information provided by{' '}
+                Nutrition information is estimated based on the ingredients.
+                Provided by{' '}
                 <a
                   href="https://www.nutritionix.com/"
                   target="_blank"
