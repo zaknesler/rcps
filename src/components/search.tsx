@@ -6,9 +6,15 @@ import { useEvent } from '~/hooks/use-event'
 
 type SearchProps = {
   className?: string
+  inputClassName?: string
+  expanded?: boolean
 }
 
-export const Search: React.FC<SearchProps> = ({ className }) => {
+export const Search: React.FC<SearchProps> = ({
+  className,
+  inputClassName,
+  expanded = false,
+}) => {
   const router = useRouter()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
@@ -52,8 +58,13 @@ export const Search: React.FC<SearchProps> = ({ className }) => {
   }
 
   return (
-    <div className={cx('flex flex-1 items-center justify-end', className)}>
-      {open ? (
+    <div
+      className={cx(
+        !expanded && 'flex flex-1 items-center justify-end',
+        className,
+      )}
+    >
+      {open || expanded ? (
         <input
           ref={input}
           type="text"
@@ -61,7 +72,9 @@ export const Search: React.FC<SearchProps> = ({ className }) => {
           onChange={e => setQuery(e.target.value)}
           onKeyDown={handleSubmit}
           className={cx(
-            'h-full w-full max-w-xs flex-1 self-stretch rounded-none border border-black p-2 text-sm leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300',
+            'w-full rounded-none border border-black p-2 text-sm leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300',
+            !expanded && 'h-full max-w-xs flex-1 self-stretch',
+            inputClassName,
           )}
           placeholder="Search for recipes..."
         />

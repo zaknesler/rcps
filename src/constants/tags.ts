@@ -49,6 +49,18 @@ export const validTags = [
     ],
   },
   {
+    name: 'Dessert',
+    value: 'dessert',
+    categories: [
+      { name: 'Hot', value: 'hot' },
+      { name: 'Cold', value: 'cold' },
+      { name: 'Fruit', value: 'fruit' },
+      { name: 'Chocolate', value: 'chocolate' },
+      { name: 'Ice Cream', value: 'ice-cream' },
+      { name: 'Pastry', value: 'pastry' },
+    ],
+  },
+  {
     name: 'Vegan',
     value: 'vegan',
     categories: [

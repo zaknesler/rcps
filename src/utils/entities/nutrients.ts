@@ -2,7 +2,9 @@ import type { NutritionItem } from '@prisma/client'
 import _ from 'lodash'
 import { FULL_NUTRIENTS_MAP } from '~/constants/nutrients'
 
-export const getFormattedNutritionStats = (items: NutritionItem[]) =>
+export const getFormattedNutritionStats = (
+  items: Pick<NutritionItem, 'nutrient_data'>[],
+) =>
   _.chain(items)
     .map(item => item.nutrient_data)
     .flatten()

@@ -1,5 +1,9 @@
 @tailwind base;
 
+html, body, #__next {
+  height: 100%;
+}
+
 body::after {
   background-image: url(/noise.png);
   background-repeat: repeat;
