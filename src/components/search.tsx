@@ -72,8 +72,8 @@ export const Search: React.FC<SearchProps> = ({
           onChange={e => setQuery(e.target.value)}
           onKeyDown={handleSubmit}
           className={cx(
-            'w-full rounded-none border border-black p-2 text-sm leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300',
-            !expanded && 'h-full max-w-xs flex-1 self-stretch',
+            'w-full rounded-none border border-black p-2 leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300',
+            !expanded && 'h-full max-w-xs flex-1 self-stretch text-sm',
             inputClassName,
           )}
           placeholder="Search for recipes..."

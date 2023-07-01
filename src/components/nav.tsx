@@ -52,7 +52,7 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
 
         <div className="flex flex-1 flex-wrap items-stretch justify-end gap-4">
           <button
-            className="flex items-center justify-center self-center p-1.5 transition-colors hover:bg-gray-100 md:hidden"
+            className="flex items-center justify-center self-center p-1.5 transition-colors hover:bg-gray-100 print:hidden md:hidden"
             onClick={onToggle}
           >
             {open ? (
@@ -87,7 +87,7 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
               </Link>
             ))}
           </div>
-          <Search expanded className="print:hidden" inputClassName="p-4" />
+          <Search expanded className="print:hidden" inputClassName="p-3" />
         </div>
       )}
     </>
