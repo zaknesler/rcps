@@ -152,8 +152,8 @@ const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
                 ))}
               </ul>
               <p className="text-xs">
-                Nutrition information is estimated based on the ingredients.
-                Provided by{' '}
+                Nutrition information is estimated based on the ingredients, and
+                may be inaccurate. Data provided by{' '}
                 <a
                   href="https://www.nutritionix.com/"
                   target="_blank"
