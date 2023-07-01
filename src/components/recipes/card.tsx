@@ -1,6 +1,6 @@
 import type { Recipe } from '@prisma/client'
 import { cx } from 'class-variance-authority'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Switch } from '../ui/switch'
 import { PulsingItems } from '~/components/pulsing-items'
 import { api } from '~/utils/api'
@@ -54,6 +54,7 @@ type RecipeCardInnerProps = {
 
 const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
   const [showNutrition, setShowNutrition] = useState(false)
+  const bottom = useRef<HTMLDivElement>(null)
 
   const { data: nutrientData } = api.nutrients.byRecipe.useQuery({
     recipeId: recipe.id,
@@ -63,6 +64,13 @@ const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
     ...note,
     symbol: noteSymbols[index % noteSymbols.length],
   }))
+
+  useEffect(() => {
+    if (!showNutrition) return
+
+    // scroll to bottom
+    bottom.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [showNutrition])
 
   return (
     <>
@@ -122,7 +130,7 @@ const RecipeCardInner: React.FC<RecipeCardInnerProps> = ({ recipe }) => {
       )}
 
       {!!nutrientData && (
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4" ref={bottom}>
           <h2 className="flex items-center gap-1.5 text-lg font-semibold md:text-xl">
             <button onClick={() => setShowNutrition(!showNutrition)}>
               Nutrition
