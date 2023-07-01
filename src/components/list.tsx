@@ -14,13 +14,15 @@ export const RecipeList: React.FC<RecipeListProps> = ({
   notFoundText = 'No recipes found',
 }) => {
   return (
-    <div className="flex flex-col gap-4 md:gap-8">
+    <div className="flex flex-1 flex-col gap-4 md:gap-8">
       {isLoading ? (
         <PulsingItems count={3} itemHeightClass="h-32" />
       ) : recipes?.length ? (
         recipes.map(recipe => <RecipeSummary key={recipe.id} recipe={recipe} />)
       ) : (
-        <p className="text-center">{notFoundText}</p>
+        <p className="flex flex-1 items-center justify-center text-center">
+          {notFoundText}
+        </p>
       )}
     </div>
   )

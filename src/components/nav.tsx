@@ -74,20 +74,20 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
       </nav>
 
       {open && (
-        <div className="flex h-full flex-1 flex-col justify-between gap-4">
-          <div className="flex flex-1 flex-col justify-center overflow-y-auto text-center font-semibold">
+        <div className="flex flex-1 flex-col gap-4">
+          <div className="flex flex-1 flex-col justify-center gap-1 overflow-hidden text-center text-lg font-semibold">
             {links.map(link => (
               <Link
                 key={link.label}
                 href={link.href}
                 title={link.label}
-                className="p-3"
+                className="p-3 hover:bg-gray-100"
               >
                 {link.label}
               </Link>
             ))}
           </div>
-          <Search expanded className="print:hidden" inputClassName="p-3" />
+          <Search expanded className="flex print:hidden" inputClassName="p-3" />
         </div>
       )}
     </>

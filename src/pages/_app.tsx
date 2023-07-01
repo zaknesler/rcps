@@ -32,10 +32,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </Head>
       <main
-        className={`${monoFont.variable} mx-auto flex h-full w-full max-w-5xl flex-col gap-4 p-4 font-mono md:gap-8 md:p-8`}
+        className={`${monoFont.variable} mx-auto flex h-full w-full max-w-5xl flex-col font-mono`}
       >
-        <Nav open={navOpen} onToggle={() => setNavOpen(!navOpen)} />
-        {!navOpen && <Component {...pageProps} />}
+        <div className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+          <Nav open={navOpen} onToggle={() => setNavOpen(!navOpen)} />
+          {!navOpen && <Component {...pageProps} />}
+        </div>
       </main>
     </>
   )
