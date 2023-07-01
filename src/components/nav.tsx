@@ -75,7 +75,7 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
 
       {open && (
         <div className="flex flex-1 flex-col gap-4">
-          <div className="flex flex-1 flex-col justify-center gap-1 overflow-hidden text-center text-lg font-semibold">
+          <div className="flex flex-1 flex-col justify-center gap-1 overflow-y-auto text-center text-lg font-semibold">
             {links.map(link => (
               <Link
                 key={link.label}
