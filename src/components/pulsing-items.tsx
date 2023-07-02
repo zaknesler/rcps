@@ -19,7 +19,7 @@ export const PulsingItems: React.FC<PulsingItemProps> = ({
         <div
           key={index}
           className={cx(
-            'w-full animate-pulse rounded-lg bg-gray-100',
+            'w-full animate-pulse rounded-lg bg-gray-100 dark:bg-gray-900',
             classNameItem,
             itemHeightClass,
           )}

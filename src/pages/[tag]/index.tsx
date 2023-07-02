@@ -2,12 +2,12 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { RecipeList } from '~/components/list'
 import { CategoryList } from '~/components/recipes/category-list'
-import { validTags } from '~/constants/tags'
+import { VALID_TAGS } from '~/constants/tags'
 import { api } from '~/utils/api'
 
 export const getServerSideProps = async ({ params }: SSPC) => {
   const tagParam = params?.tag as string | undefined
-  const tag = validTags.find(t => t.value === tagParam?.toLowerCase().trim())
+  const tag = VALID_TAGS.find(t => t.value === tagParam?.toLowerCase().trim())
   if (!tag) return { notFound: true }
 
   return { props: { tag } }
