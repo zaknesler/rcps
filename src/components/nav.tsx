@@ -2,17 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import MenuIcon from '../icons/menu.svg'
 import XIcon from '../icons/x.svg'
+import { VALID_TAGS } from '~/constants/tags'
 import { Search } from './search'
-
-const links = [
-  { href: '/breakfast', label: 'breakfast', text: 'brkfst' },
-  { href: '/lunch', label: 'lunch', text: 'lnch' },
-  { href: '/dinner', label: 'dinner', text: 'dnnr' },
-  { href: '/snacks', label: 'snacks', text: 'snks' },
-  { href: '/dessert', label: 'dessert', text: 'dssrt' },
-  { href: '/vegan', label: 'vegan', text: 'vgn' },
-  { href: '/drinks', label: 'drinks', text: 'drnks' },
-]
 
 type NavProps = {
   open: boolean
@@ -38,21 +29,21 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
         </Link>
 
         <div className="hidden flex-wrap items-center gap-4 md:flex">
-          {links.map(link => (
+          {VALID_TAGS.map(tag => (
             <Link
-              key={link.label}
-              href={link.href}
+              key={tag.value}
+              href={`/${tag.value}`}
               className="font-semibold underline hover:text-red-600"
-              title={link.label}
+              title={tag.name}
             >
-              {link.text}
+              {tag.short}
             </Link>
           ))}
         </div>
 
         <div className="flex flex-1 flex-wrap items-stretch justify-end gap-4">
           <button
-            className="flex items-center justify-center self-center p-1.5 transition-colors hover:bg-gray-100 print:hidden md:hidden"
+            className="flex items-center justify-center self-center p-1.5 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 print:hidden md:hidden"
             onClick={onToggle}
           >
             {open ? (
@@ -76,14 +67,14 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
       {open && (
         <div className="flex flex-1 flex-col gap-4">
           <div className="flex flex-1 flex-col justify-center gap-1 overflow-y-auto text-center text-lg font-semibold">
-            {links.map(link => (
+            {VALID_TAGS.map(tag => (
               <Link
-                key={link.label}
-                href={link.href}
-                title={link.label}
-                className="p-3 hover:bg-gray-100"
+                key={tag.value}
+                href={`/${tag.value}`}
+                title={tag.name}
+                className="p-3 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                {link.label}
+                {tag.name}
               </Link>
             ))}
           </div>
