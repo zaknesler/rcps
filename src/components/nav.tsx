@@ -31,7 +31,7 @@ export const Nav: React.FC<NavProps> = ({ open, onToggle }) => {
       <nav className="flex flex-wrap items-stretch gap-4">
         <Link
           href="/"
-          className="print-exact group bg-black px-3 py-2 leading-snug text-white"
+          className="print-exact group bg-black px-3 py-2 leading-snug text-white dark:bg-white dark:text-black"
         >
           <span className="group-hover:hidden">r.c.p.s</span>
           <span className="hidden group-hover:inline">recipes</span>

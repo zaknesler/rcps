@@ -72,7 +72,7 @@ export const Search: React.FC<SearchProps> = ({
           onChange={e => setQuery(e.target.value)}
           onKeyDown={handleSubmit}
           className={cx(
-            'w-full rounded-none border border-black p-2 leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300',
+            'w-full rounded-none border border-black bg-white p-2 leading-none outline-none transition-shadow focus:ring-4 focus:ring-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:focus:ring-gray-700',
             !expanded && 'h-full max-w-xs flex-1 self-stretch text-sm',
             inputClassName,
           )}

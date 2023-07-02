@@ -28,7 +28,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
     <article
       aria-label={recipe?.title}
       className={cx(
-        'flex flex-col gap-6 border border-black p-4 text-sm md:p-8 md:text-base',
+        'flex flex-col gap-6 border border-black p-4 text-sm dark:border-gray-700 md:p-8 md:text-base',
         className,
       )}
     >
