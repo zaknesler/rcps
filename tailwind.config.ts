@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        gray: {...defaultColors.neutral},
+        gray: { ...defaultColors.neutral },
       },
       fontFamily: {
         mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
