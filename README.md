@@ -13,5 +13,5 @@
 <details>
   <summary><strong>View screenshot</strong></summary>
   <br />
-  <img src="https://github.com/zaknesler/rcps.io/assets/7189795/5bb1c204-997c-4cc1-910f-80fc982fd039" />
+  <img src="https://github.com/zaknesler/rcps.io/assets/7189795/e3ded31a-9a55-491b-9ae1-cf77a9b48a32" />
 </details>
