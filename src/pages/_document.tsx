@@ -17,7 +17,13 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <script
+            defer
+            data-domain="rcps.io"
+            src="https://analytics.zak.bz/js/script.js"
+          />
+        </Head>
         <body className="bg-white text-black dark:bg-black dark:text-white">
           <Main />
           <NextScript />
