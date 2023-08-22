@@ -8,7 +8,7 @@
 - [x] Recipe categories and tags
 - [x] Global search
 - [x] Nutrition info automatically estimated from ingredients
-- [x] No backstory, no ads, no tracking
+- [x] No backstory & no ads
 
 <details>
   <summary><strong>View screenshot</strong></summary>
