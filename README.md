@@ -1,6 +1,6 @@
 <img src="public/logo-black.svg" width="100" />
 
-*rcps.io* is a minimalist recipe site built with the T3 stack (TypeScript, tRPC, Tailwind CSS) and MongoDB.
+*rcps* is a minimalist recipe site built with the T3 stack (TypeScript, tRPC, Tailwind CSS) and MongoDB.
 
 ### Features
 
